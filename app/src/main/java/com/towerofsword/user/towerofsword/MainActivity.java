@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private Button.OnClickListener start_button_listener = new Button.OnClickListener(){
         public void onClick(View v) {
             Intent intent = new Intent();
-            intent.setClass(MainActivity.this, home.class);
+            intent.setClass(MainActivity.this, Home.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
         }
     };
