@@ -27,6 +27,7 @@ public class Loading extends AppCompatActivity {
             intent.setClass(Loading.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
+            overridePendingTransition(0,0);
             this.cancel();
             Loading.this.finish();
         }

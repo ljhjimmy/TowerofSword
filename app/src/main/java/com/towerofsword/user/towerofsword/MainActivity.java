@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
             intent.setClass(MainActivity.this, Home.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
+            overridePendingTransition(0,0);
+            finish();
         }
     };
 
