@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 
@@ -14,6 +15,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ImageButton start_button = (ImageButton)findViewById(R.id.start_button);
+        ImageButton btntap = (ImageButton)findViewById(R.id.taptostart);
+
+        btntap.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.alpha));
+
+        btntap.setOnClickListener(start_button_listener);
         start_button.setOnClickListener(start_button_listener);
     }
 
@@ -24,4 +30,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     };
+
+
 }
