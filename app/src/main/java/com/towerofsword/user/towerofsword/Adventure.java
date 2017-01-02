@@ -67,6 +67,7 @@ public class Adventure extends AppCompatActivity {
             for(int i=0;i<changearray.length;i++) {
                 if(index+changearray[i]>=0 && index+changearray[i]<25) {
                     block[index + changearray[i]].setImageResource(R.drawable.block1);
+                    block[index + changearray[i]].setClickable(true);
                 }
             }
         }
@@ -75,8 +76,17 @@ public class Adventure extends AppCompatActivity {
     private void initBlock(){
         for(int i=0;i<block.length;i++) {
             block[i].setImageResource(R.drawable.block1_dark);
+            block[i].setVisibility(View.VISIBLE);
+            block[i].setClickable(false);
         }
-        block[2].setImageResource(R.drawable.block1);
+        block[1].setImageResource(R.drawable.block1);
+        block[3].setImageResource(R.drawable.block1);
+        block[7].setImageResource(R.drawable.block1);
+        block[1].setClickable(true);
+        block[3].setClickable(true);
+        block[7].setClickable(true);
+        block[2].setVisibility(View.INVISIBLE);
+        block[22].setVisibility(View.INVISIBLE);
     }
 
 }

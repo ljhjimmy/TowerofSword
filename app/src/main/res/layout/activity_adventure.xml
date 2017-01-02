@@ -230,16 +230,18 @@
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="1dp" />
+
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@mipmap/ic_launcher"
+        app:srcCompat="@drawable/portal"
         android:layout_alignBottom="@+id/imageView3"
         android:layout_centerHorizontal="true"
         android:id="@+id/item3"
         android:background="@android:color/transparent"
-        android:scaleType="centerCrop"
-        android:elevation="1dp" />
+        android:elevation="1dp"
+        android:scaleType="fitCenter" />
+
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
@@ -437,13 +439,13 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@mipmap/ic_launcher"
+        app:srcCompat="@drawable/door"
         android:layout_above="@+id/item18"
         android:layout_centerHorizontal="true"
         android:id="@+id/item23"
         android:background="@android:color/transparent"
-        android:scaleType="centerCrop"
-        android:elevation="1dp" />
+        android:elevation="1dp"
+        android:scaleType="fitCenter" />
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
@@ -468,7 +470,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -479,7 +481,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -489,7 +491,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -499,7 +501,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -509,7 +511,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -520,7 +522,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -531,7 +533,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -541,7 +543,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -551,7 +553,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -561,7 +563,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -572,7 +574,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -583,7 +585,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -593,7 +595,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -603,7 +605,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -613,7 +615,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -624,7 +626,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -635,7 +637,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -645,7 +647,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -655,7 +657,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -665,7 +667,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -676,7 +678,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -687,7 +689,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -697,7 +699,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -707,7 +709,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
@@ -717,7 +719,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/block1"
+        app:srcCompat="@drawable/block1_dark"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="2dp"
