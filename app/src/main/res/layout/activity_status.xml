@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:text="裝備"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:id="@+id/buttonEquipment"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:background="@drawable/buttonselect"/>
+
+    <Button
+        android:text="能力值"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:id="@+id/buttonAb"
+        android:textSize="30sp"
+        android:background="@drawable/buttonselect"
+        android:layout_marginBottom="54dp"
+        android:layout_above="@+id/buttonEquipment"
+        android:layout_alignStart="@+id/buttonEquipment" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/soul01"
+        android:id="@+id/imageSoul"
+        android:scaleType="fitXY"
+        android:layout_below="@+id/textViewCoin"
+        android:layout_toStartOf="@+id/textViewCoin" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/coin01"
+        android:id="@+id/imageCoin"
+        android:layout_alignTop="@+id/textViewCoin"
+        android:layout_toStartOf="@+id/textViewCoin" />
+
+    <TextView
+        android:text="0"
+        android:id="@+id/textViewSoul"
+        android:layout_height="30dp"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:gravity="start|center"
+        android:layout_width="150dp"
+        android:paddingStart="5dp"
+        android:background="@drawable/textviewborder"
+        android:layout_marginBottom="43dp"
+        android:layout_above="@+id/buttonBack"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="返回"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="27dp"
+        android:id="@+id/buttonBack"
+        android:textSize="30sp"
+        android:background="@drawable/buttonselect"
+        android:layout_marginEnd="34dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="0"
+        android:id="@+id/textViewCoin"
+        android:layout_height="30dp"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:gravity="start|center"
+        android:layout_width="150dp"
+        android:paddingStart="5dp"
+        android:background="@drawable/textviewborder"
+        android:layout_marginBottom="17dp"
+        android:layout_above="@+id/textViewSoul"
+        android:layout_alignStart="@+id/textViewSoul" />
+
+
+</RelativeLayout>

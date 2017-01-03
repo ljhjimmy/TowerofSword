@@ -26,6 +26,14 @@ public class Adventure extends AppCompatActivity {
     private ImageButton[] block = new ImageButton[idBlockArray.length];
     private ImageButton[] item = new ImageButton[idItemArray.length];
 
+    public static final int EMPTY = 0;
+    public static final int SOUL = 1;
+    public static final int MONEY = 2;
+    public static final int MONSTER = 3;
+    public static final int PORTAL = 10;
+    public static final int GATE = 11;
+
+    private int[] itemIsWhat = new int[25];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +43,89 @@ public class Adventure extends AppCompatActivity {
         for (int i=0; i<idBlockArray.length; i++) {
             block[i] = (ImageButton)findViewById(idBlockArray[i]);
             item[i] = (ImageButton)findViewById(idItemArray[i]);
-            block [i].setOnClickListener(listenerBlock) ;
+        }
+        for (int i=0; i<idBlockArray.length; i++) {
+            block[i].setOnClickListener(listenerBlock) ;
+            item[i].setOnClickListener(listenerItem) ;
         }
         initBlock();
+        initItem();
+
+        Button btnStatus = (Button)findViewById(R.id.btnStatus);
+        btnStatus.setOnClickListener(listenerStatus);
     }
+
+    public void initItem(){
+        int count = 0;
+        int num;
+
+        for(int i=0;i<25;i++){
+            itemIsWhat[i] = EMPTY;
+        }
+        itemIsWhat[2] = PORTAL;
+        itemIsWhat[22] = GATE;
+
+        while(count < 5){
+            num = (int) (Math.random()*25);
+            if(itemIsWhat[num] == EMPTY){
+                itemIsWhat[num] = MONSTER;
+                item[num].setImageResource(R.drawable.monster1);
+                count++;
+            }
+        }
+
+        count = 0;
+        while(count < 2){
+            num = (int) (Math.random()*25);
+            if(itemIsWhat[num] == EMPTY){
+                itemIsWhat[num] = SOUL;
+                item[num].setImageResource(R.drawable.soul02);
+                count++;
+            }
+        }
+
+        count = 0;
+        while(count < 2){
+            num = (int) (Math.random()*25);
+            if(itemIsWhat[num] == EMPTY){
+                itemIsWhat[num] = MONEY;
+                item[num].setImageResource(R.drawable.coin02);
+                count++;
+            }
+        }
+    }
+
+    private ImageButton.OnClickListener listenerItem = new ImageButton.OnClickListener(){
+        public void onClick(View v) {
+            int index = -1;
+
+            for(int i=0;i<25;i++) {
+                if(item[i].equals(v)){
+                    index = i;
+                    break;
+                }
+            }
+
+            switch(itemIsWhat[index]){
+                case SOUL:
+                    v.setVisibility(View.INVISIBLE);
+                    break;
+                case MONEY:
+                    v.setVisibility(View.INVISIBLE);
+                    break;
+                case MONSTER:
+                    v.setVisibility(View.INVISIBLE);
+                    break;
+                case PORTAL:
+
+                    break;
+                case GATE:
+
+                    break;
+                default:
+            }
+        }
+    };
 
     private ImageButton.OnClickListener listenerBlock = new ImageButton.OnClickListener(){
         public void onClick(View v) {
@@ -70,6 +157,17 @@ public class Adventure extends AppCompatActivity {
                     block[index + changearray[i]].setClickable(true);
                 }
             }
+        }
+    };
+
+
+    private Button.OnClickListener listenerStatus = new Button.OnClickListener(){
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(Adventure.this, Status.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            overridePendingTransition(0,0);
         }
     };
 
