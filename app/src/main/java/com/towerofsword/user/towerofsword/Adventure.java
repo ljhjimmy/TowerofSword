@@ -34,11 +34,12 @@ public class Adventure extends AppCompatActivity {
     public static final int GATE = 11;
 
     private int[] itemIsWhat = new int[25];
-
+    private static GlobalVariable globalVariable ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adventure);
+        globalVariable = (GlobalVariable) getApplicationContext();
 
         for (int i=0; i<idBlockArray.length; i++) {
             block[i] = (ImageButton)findViewById(idBlockArray[i]);
@@ -108,9 +109,11 @@ public class Adventure extends AppCompatActivity {
 
             switch(itemIsWhat[index]){
                 case SOUL:
+                    globalVariable.soul += globalVariable.currentFloor*10;
                     v.setVisibility(View.INVISIBLE);
                     break;
                 case MONEY:
+                    globalVariable.money += globalVariable.currentFloor*10;
                     v.setVisibility(View.INVISIBLE);
                     break;
                 case MONSTER:

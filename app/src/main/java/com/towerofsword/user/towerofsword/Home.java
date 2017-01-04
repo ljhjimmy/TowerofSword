@@ -48,12 +48,7 @@ public class Home extends AppCompatActivity {
                             }
                         })
                 .setNegativeButton("取消",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                            }
-                        }).show();
+                        null).show();
     }
 }
 
