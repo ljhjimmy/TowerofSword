@@ -1,7 +1,6 @@
 package com.towerofsword.user.towerofsword;
 
-import android.content.Context;
-import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,8 +16,19 @@ public class Status extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
 
-        Button btnBack = (Button)findViewById(R.id.buttonBack);
+        Typeface font_pixel = Typeface.createFromAsset(getAssets(), "fonts/manaspace.ttf");
+
+        Button btnBack = (Button)findViewById(R.id.btnBack);
+        btnBack.setTypeface(font_pixel);
         btnBack.setOnClickListener(listenerBack);
+
+        Button btnAb = (Button)findViewById(R.id.btnAb);
+        btnAb.setTypeface(font_pixel);
+        //btnAb.setOnClickListener(listenerAb);
+
+        Button btnEquipment = (Button)findViewById(R.id.btnEquipment);
+        btnEquipment.setTypeface(font_pixel);
+        //btnEquipment.setOnClickListener(listenerEquipment);
 
         GlobalVariable globalVariable = (GlobalVariable) getApplicationContext();
         TextView textViewCoin = (TextView) findViewById(R.id.textViewCoin);

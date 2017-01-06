@@ -1,53 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/tower_home_cut">
 
     <Button
-        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="25dp"
+        android:id="@+id/btnEquipment"
+        android:text="equipment"
+        android:textSize="30sp"
+        android:background="@drawable/buttonselect"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_width="200dp"
+        android:textAlignment="center" />
+
+    <Button
         android:layout_height="60dp"
         android:id="@+id/btnTalent"
-        android:text="天賦"
+        android:text="talent"
         android:textSize="30sp"
         android:background="@drawable/buttonselect"
-        android:layout_marginBottom="35dp"
         android:layout_above="@+id/btnEquipment"
-        android:layout_alignStart="@+id/btnEquipment" />
+        android:layout_alignEnd="@+id/btnEquipment"
+        android:layout_marginBottom="24dp"
+        android:layout_width="130dp"
+        android:textAlignment="center" />
 
     <Button
-        android:layout_width="100dp"
         android:layout_height="60dp"
         android:id="@+id/btnRecord"
-        android:text="記錄"
+        android:text="record"
         android:textSize="30sp"
         android:background="@drawable/buttonselect"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="24dp"
+
         android:layout_above="@+id/btnTalent"
-        android:layout_alignStart="@+id/btnTalent" />
+        android:layout_alignStart="@+id/btnTalent"
+        android:layout_width="130dp"
+        android:textAlignment="center" />
 
     <Button
-        android:text="冒險"
-        android:layout_width="100dp"
+        android:text="adventure"
         android:layout_height="60dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginBottom="69dp"
         android:id="@+id/btnAdventure"
         android:textSize="30sp"
         android:background="@drawable/buttonselect"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
 
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="26dp"
-        android:id="@+id/btnEquipment"
-        android:text="裝備"
-        android:textSize="30sp"
-        android:background="@drawable/buttonselect"
-        android:layout_alignBaseline="@+id/btnAdventure"
-        android:layout_alignBottom="@+id/btnAdventure"
-        android:layout_alignParentEnd="true" />
+        android:layout_above="@+id/btnRecord"
+        android:layout_alignEnd="@+id/btnRecord"
+        android:layout_marginBottom="30dp"
+        android:layout_width="200dp"
+        android:textAlignment="gravity"
+        android:gravity="center_vertical|center_horizontal|clip_horizontal" />
 
 
 </RelativeLayout>

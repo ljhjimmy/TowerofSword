@@ -2,6 +2,7 @@ package com.towerofsword.user.towerofsword;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -53,6 +54,8 @@ public class Adventure extends AppCompatActivity {
         initItem();
 
         Button btnStatus = (Button)findViewById(R.id.btnStatus);
+        Typeface font_pixel = Typeface.createFromAsset(getAssets(), "fonts/manaspace.ttf");
+        btnStatus.setTypeface(font_pixel);
         btnStatus.setOnClickListener(listenerStatus);
     }
 

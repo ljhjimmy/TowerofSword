@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/tower_dark"
+    android:backgroundTintMode="multiply">
 
     <Button
-        android:text="裝備"
+        android:text="Equipment"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:id="@+id/buttonEquipment"
+        android:id="@+id/btnEquipment"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:textSize="30sp"
         android:background="@drawable/buttonselect"/>
 
     <Button
-        android:text="能力值"
+        android:text="Ability"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:id="@+id/buttonAb"
+        android:id="@+id/btnAb"
         android:textSize="30sp"
         android:background="@drawable/buttonselect"
         android:layout_marginBottom="54dp"
-        android:layout_above="@+id/buttonEquipment"
-        android:layout_alignStart="@+id/buttonEquipment" />
+        android:layout_above="@+id/btnEquipment"
+        android:layout_alignStart="@+id/btnEquipment" />
 
     <ImageView
         android:layout_width="30dp"
@@ -53,15 +56,15 @@
         android:paddingStart="5dp"
         android:background="@drawable/textviewborder"
         android:layout_marginBottom="43dp"
-        android:layout_above="@+id/buttonBack"
+        android:layout_above="@+id/btnBack"
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="返回"
+        android:text="back"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginBottom="27dp"
-        android:id="@+id/buttonBack"
+        android:id="@+id/btnBack"
         android:textSize="30sp"
         android:background="@drawable/buttonselect"
         android:layout_marginEnd="34dp"
