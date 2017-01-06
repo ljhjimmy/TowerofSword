@@ -32,8 +32,10 @@ public class Status extends AppCompatActivity {
 
         GlobalVariable globalVariable = (GlobalVariable) getApplicationContext();
         TextView textViewCoin = (TextView) findViewById(R.id.textViewCoin);
+        textViewCoin.setTypeface(font_pixel);
         textViewCoin.setText(Integer.toString(globalVariable.money)) ;
         TextView textViewSoul = (TextView) findViewById(R.id.textViewSoul);
+        textViewSoul.setTypeface(font_pixel);
         textViewSoul.setText(Integer.toString(globalVariable.soul)) ;
     }
 
