@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="dynamicTextViewId1" />
+    <item type="id" name="dynamicTextViewId2" />
+    <item type="id" name="dynamicTextViewId3" />
+    <item type="id" name="dynamicTextViewId4" />
+    <item type="id" name="dynamicTextViewId5" />
+    <item type="id" name="dynamicTextViewId6" />
+    <item type="id" name="dynamicTextViewId7" />
+    <item type="id" name="dynamicTextViewId8" />
+    <item type="id" name="dynamicTextViewId9" />
+    <item type="id" name="dynamicTextViewId10" />
+    <item type="id" name="dynamicImageViewId1" />
+    <item type="id" name="dynamicImageViewId2" />
+    <item type="id" name="dynamicImageViewId3" />
+    <item type="id" name="dynamicImageViewId4" />
+    <item type="id" name="dynamicImageViewId5" />
+    <item type="id" name="dynamicImageViewId6" />
+    <item type="id" name="dynamicImageViewId7" />
+    <item type="id" name="dynamicImageViewId8" />
+    <item type="id" name="dynamicImageViewId9" />
+    <item type="id" name="dynamicImageViewId10" />
+</resources>

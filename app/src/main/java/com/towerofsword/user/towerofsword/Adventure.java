@@ -6,8 +6,12 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class Adventure extends AppCompatActivity {
 
@@ -35,6 +39,16 @@ public class Adventure extends AppCompatActivity {
 
     private int[] itemIsWhat = new int[25];
     private static GlobalVariable globalVariable ;
+
+    private static final int[] idDynamicTextViewArray = {R.id.dynamicTextViewId1, R.id.dynamicTextViewId2, R.id.dynamicTextViewId3, R.id.dynamicTextViewId4, R.id.dynamicTextViewId5,
+            R.id.dynamicTextViewId6, R.id.dynamicTextViewId7, R.id.dynamicTextViewId8, R.id.dynamicTextViewId9, R.id.dynamicTextViewId10};
+
+    private static final int[] idDynamicImageViewArray = {R.id.dynamicImageViewId1, R.id.dynamicImageViewId2, R.id.dynamicImageViewId3, R.id.dynamicImageViewId4, R.id.dynamicImageViewId5,
+            R.id.dynamicImageViewId6, R.id.dynamicImageViewId7, R.id.dynamicImageViewId8, R.id.dynamicImageViewId9, R.id.dynamicImageViewId10};
+
+    private static int currentDynamicTextViewIndex = 0;
+    private static int currentDynamicImageViewIndex = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +68,53 @@ public class Adventure extends AppCompatActivity {
 
         Button btnStatus = (Button)findViewById(R.id.btnStatus);
         btnStatus.setOnClickListener(listenerStatus);
+
+
     }
 
-    public void initItem(){
+    private void gainItemAnim(int num, int item){
+        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.adventure_layout);
+        RelativeLayout.LayoutParams params;
+        RelativeLayout.LayoutParams params2;
+        TextView tv;
+        ImageView im;
+
+        tv = new TextView(this);
+        tv.setId(idDynamicTextViewArray[currentDynamicTextViewIndex]);
+        tv.setText("+" + String.valueOf(num) );
+        tv.setTextSize(18);
+        tv.setGravity(0x00800005);
+
+        params = new RelativeLayout.LayoutParams(220, 80);
+        params.addRule(RelativeLayout.ALIGN_START, R.id.btnStatus);
+        params.addRule(RelativeLayout.ABOVE, R.id.btnStatus);
+        relativeLayout.addView(tv, params);
+
+        im = new ImageView(this);
+        im.setId(idDynamicImageViewArray[currentDynamicImageViewIndex]);
+        switch(item) {
+            case MONEY:
+                im.setImageResource(R.drawable.coin01);
+                break;
+            case SOUL:
+                im.setImageResource(R.drawable.soul01);
+                break;
+        }
+
+        params2 = new RelativeLayout.LayoutParams(80, 80);
+        params2.addRule(RelativeLayout.END_OF, idDynamicTextViewArray[currentDynamicTextViewIndex]);
+        params2.addRule(RelativeLayout.ALIGN_BOTTOM, idDynamicTextViewArray[currentDynamicTextViewIndex]);
+        relativeLayout.addView(im, params2);
+
+        tv.startAnimation(AnimationUtils.loadAnimation(Adventure.this, R.anim.anim_gain));
+        im.startAnimation(AnimationUtils.loadAnimation(Adventure.this, R.anim.anim_gain));
+
+        currentDynamicTextViewIndex++;
+        currentDynamicImageViewIndex++;
+    }
+
+
+    private void initItem(){
         int count = 0;
         int num;
 
@@ -94,11 +152,24 @@ public class Adventure extends AppCompatActivity {
                 count++;
             }
         }
+
+        for(int i=0;i<25;i++){
+            item[i].setClickable(false);
+            if(itemIsWhat[i] != EMPTY){
+                item[i].setVisibility(View.VISIBLE);
+            }
+            else{
+                item[i].setVisibility(View.INVISIBLE);
+            }
+        }
+        item[2].setClickable(true);
+        item[22].setClickable(true);
     }
 
     private ImageButton.OnClickListener listenerItem = new ImageButton.OnClickListener(){
         public void onClick(View v) {
             int index = -1;
+            int gainValue;
 
             for(int i=0;i<25;i++) {
                 if(item[i].equals(v)){
@@ -109,11 +180,15 @@ public class Adventure extends AppCompatActivity {
 
             switch(itemIsWhat[index]){
                 case SOUL:
-                    globalVariable.soul += globalVariable.currentFloor*10;
+                    gainValue = (int) Math.round(globalVariable.currentFloor*10 * (1.1 - Math.random()*0.21));
+                    globalVariable.soul += gainValue;
+                    gainItemAnim(gainValue,SOUL);
                     v.setVisibility(View.INVISIBLE);
                     break;
                 case MONEY:
-                    globalVariable.money += globalVariable.currentFloor*10;
+                    gainValue = (int) Math.round(globalVariable.currentFloor*10 * (1.1 - Math.random()*0.21));
+                    globalVariable.money += gainValue;
+                    gainItemAnim(gainValue,MONEY);
                     v.setVisibility(View.INVISIBLE);
                     break;
                 case MONSTER:
@@ -133,8 +208,7 @@ public class Adventure extends AppCompatActivity {
     private ImageButton.OnClickListener listenerBlock = new ImageButton.OnClickListener(){
         public void onClick(View v) {
             int index = -1;
-            int[] changearray;
-            v.setVisibility(View.INVISIBLE);
+            int[] changeArray;
 
             for(int i=0;i<25;i++) {
                 if(block[i].equals(v)){
@@ -145,21 +219,23 @@ public class Adventure extends AppCompatActivity {
 
             switch(index%5){
                 case 0:
-                    changearray = chageBlockIndexArrayLeft;
+                    changeArray = chageBlockIndexArrayLeft;
                     break;
                 case 4:
-                    changearray = chageBlockIndexArrayRight;
+                    changeArray = chageBlockIndexArrayRight;
                     break;
                 default:
-                    changearray = chageBlockIndexArray;
+                    changeArray = chageBlockIndexArray;
             }
 
-            for(int i=0;i<changearray.length;i++) {
-                if(index+changearray[i]>=0 && index+changearray[i]<25) {
-                    block[index + changearray[i]].setImageResource(R.drawable.block1);
-                    block[index + changearray[i]].setClickable(true);
+            for(int i=0;i<changeArray.length;i++) {
+                if(index+changeArray[i]>=0 && index+changeArray[i]<25) {
+                    block[index + changeArray[i]].setImageResource(R.drawable.block1);
+                    block[index + changeArray[i]].setClickable(true);
                 }
             }
+            v.setVisibility(View.INVISIBLE);
+            item[index].setClickable(true);
         }
     };
 

@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/adventure_layout">
 
 
     <ImageView
@@ -730,14 +731,14 @@
     <Button
         android:text="狀態"
         android:layout_width="100dp"
-        android:layout_height="60dp"
         android:layout_marginStart="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/btnStatus"
         android:textSize="30sp"
         android:background="@drawable/buttonselect"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_height="50dp" />
 
     <ImageView
         android:layout_width="90dp"
