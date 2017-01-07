@@ -1,36 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/tower_home_cut">
 
-    <Button
-        android:layout_height="60dp"
-        android:layout_marginEnd="25dp"
-        android:id="@+id/btnEquipment"
-        android:text="equipment"
-        android:textSize="30sp"
-        android:background="@drawable/buttonselect"
-        android:layout_marginBottom="20dp"
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/character"
+        android:id="@+id/imageView"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_width="200dp"
-        android:textAlignment="center"
-        android:paddingTop="5dp" />
-
-    <Button
-        android:layout_height="60dp"
-        android:id="@+id/btnTalent"
-        android:text="talent"
-        android:textSize="30sp"
-        android:background="@drawable/buttonselect"
-        android:layout_above="@+id/btnEquipment"
-        android:layout_alignEnd="@+id/btnEquipment"
-        android:layout_marginBottom="24dp"
-        android:layout_width="130dp"
-        android:textAlignment="center"
-        android:paddingTop="5dp" />
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_height="60dp"
@@ -38,13 +20,29 @@
         android:text="record"
         android:textSize="30sp"
         android:background="@drawable/buttonselect"
-        android:layout_marginBottom="24dp"
 
-        android:layout_above="@+id/btnTalent"
-        android:layout_alignStart="@+id/btnTalent"
+
         android:layout_width="130dp"
         android:textAlignment="center"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+
+        android:layout_centerVertical="true"
+        android:layout_alignEnd="@+id/btnEquipment" />
+
+    <Button
+        android:layout_height="60dp"
+        android:id="@+id/btnTalent"
+        android:text="talent"
+        android:textSize="30sp"
+        android:background="@drawable/buttonselect"
+
+        android:layout_width="130dp"
+        android:textAlignment="center"
+        android:paddingTop="5dp"
+
+        android:layout_above="@+id/btnRecord"
+        android:layout_alignStart="@+id/btnRecord"
+        android:layout_marginBottom="14dp" />
 
     <Button
         android:text="adventure"
@@ -53,13 +51,27 @@
         android:textSize="30sp"
         android:background="@drawable/buttonselect"
 
-        android:layout_above="@+id/btnRecord"
-        android:layout_alignEnd="@+id/btnRecord"
-        android:layout_marginBottom="30dp"
         android:layout_width="200dp"
         android:textAlignment="gravity"
         android:gravity="center_vertical|center_horizontal|clip_horizontal"
-        android:paddingTop="5dp" />
+        android:paddingTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="28dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_height="60dp"
+        android:id="@+id/btnEquipment"
+        android:text="equipment"
+        android:textSize="30sp"
+        android:background="@drawable/buttonselect"
+        android:layout_width="200dp"
+        android:textAlignment="center"
+        android:paddingTop="5dp"
+        android:layout_above="@+id/btnTalent"
+        android:layout_alignStart="@+id/btnAdventure"
+        android:layout_marginBottom="16dp" />
 
 
 </RelativeLayout>
