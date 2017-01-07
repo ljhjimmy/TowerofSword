@@ -740,15 +740,15 @@
 
     <Button
         android:text="status"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:id="@+id/btnStatus"
         android:textSize="30sp"
         android:background="@drawable/buttonselect"
         android:layout_width="130dp"
-        android:layout_alignTop="@+id/imageViewKirito"
-        android:layout_toStartOf="@+id/imageViewKirito"
-        android:layout_marginTop="15dp"
-        android:typeface="monospace" />
+        android:typeface="monospace"
+        android:paddingTop="5dp"
+        android:layout_alignBottom="@+id/imageViewKirito"
+        android:layout_toStartOf="@+id/imageViewKirito" />
 
 
 </RelativeLayout>

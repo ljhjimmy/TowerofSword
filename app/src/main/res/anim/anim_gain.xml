@@ -14,6 +14,6 @@
         android:fromXDelta="0"
         android:fromYDelta="0"
         android:repeatCount="0"
-        android:toYDelta="-70"
+        android:toYDelta="-60"
         android:interpolator="@android:anim/linear_interpolator"  />
 </set>

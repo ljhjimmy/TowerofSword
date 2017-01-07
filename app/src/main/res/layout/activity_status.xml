@@ -15,7 +15,8 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:textSize="30sp"
-        android:background="@drawable/buttonselect"/>
+        android:background="@drawable/buttonselect"
+        android:paddingTop="5dp" />
 
     <Button
         android:text="Ability"
@@ -26,7 +27,8 @@
         android:background="@drawable/buttonselect"
         android:layout_marginBottom="54dp"
         android:layout_above="@+id/btnEquipment"
-        android:layout_alignStart="@+id/btnEquipment" />
+        android:layout_alignStart="@+id/btnEquipment"
+        android:paddingTop="5dp" />
 
     <ImageView
         android:layout_width="30dp"
@@ -57,7 +59,8 @@
         android:background="@drawable/textviewborder"
         android:layout_marginBottom="43dp"
         android:layout_above="@+id/btnBack"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5dp" />
 
     <Button
         android:text="back"
@@ -69,7 +72,8 @@
         android:background="@drawable/buttonselect"
         android:layout_marginEnd="34dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:paddingTop="5dp" />
 
     <TextView
         android:text="0"
@@ -83,7 +87,8 @@
         android:background="@drawable/textviewborder"
         android:layout_marginBottom="17dp"
         android:layout_above="@+id/textViewSoul"
-        android:layout_alignStart="@+id/textViewSoul" />
+        android:layout_alignStart="@+id/textViewSoul"
+        android:paddingTop="5dp" />
 
 
 </RelativeLayout>

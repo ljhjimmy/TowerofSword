@@ -2,10 +2,12 @@ package com.towerofsword.user.towerofsword;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -49,12 +51,13 @@ public class Adventure extends AppCompatActivity {
 
     private static int currentDynamicTextViewIndex = 0;
     private static int currentDynamicImageViewIndex = 0;
-
+    private Typeface font_pixel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adventure);
         globalVariable = (GlobalVariable) getApplicationContext();
+        initVariable();
 
         for (int i=0; i<idBlockArray.length; i++) {
             block[i] = (ImageButton)findViewById(idBlockArray[i]);
@@ -68,12 +71,14 @@ public class Adventure extends AppCompatActivity {
         initItem();
 
         Button btnStatus = (Button)findViewById(R.id.btnStatus);
-        Typeface font_pixel = Typeface.createFromAsset(getAssets(), "fonts/manaspace.ttf");
+        font_pixel = Typeface.createFromAsset(getAssets(), "fonts/manaspace.ttf");
         btnStatus.setTypeface(font_pixel);
         btnStatus.setOnClickListener(listenerStatus);
 
 
     }
+
+
 
     private void gainItemAnim(int num, int item){
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.adventure_layout);
@@ -85,10 +90,13 @@ public class Adventure extends AppCompatActivity {
         tv = new TextView(this);
         tv.setId(idDynamicTextViewArray[currentDynamicTextViewIndex]);
         tv.setText("+" + String.valueOf(num) );
-        tv.setTextSize(18);
-        tv.setGravity(0x00800005);
+        tv.setTextColor(Color.WHITE);
+        tv.setTypeface(font_pixel);
+        tv.setPadding(0,5,0,0);
+        tv.setGravity(Gravity.CENTER|Gravity.END);
+        tv.setTextSize(20);
 
-        params = new RelativeLayout.LayoutParams(220, 80);
+        params = new RelativeLayout.LayoutParams(310, 80);
         params.addRule(RelativeLayout.ALIGN_START, R.id.btnStatus);
         params.addRule(RelativeLayout.ABOVE, R.id.btnStatus);
         relativeLayout.addView(tv, params);
@@ -109,13 +117,17 @@ public class Adventure extends AppCompatActivity {
         params2.addRule(RelativeLayout.ALIGN_BOTTOM, idDynamicTextViewArray[currentDynamicTextViewIndex]);
         relativeLayout.addView(im, params2);
 
+        currentDynamicTextViewIndex++;
+        currentDynamicImageViewIndex++;
         tv.startAnimation(AnimationUtils.loadAnimation(Adventure.this, R.anim.anim_gain));
         im.startAnimation(AnimationUtils.loadAnimation(Adventure.this, R.anim.anim_gain));
 
-        currentDynamicTextViewIndex++;
-        currentDynamicImageViewIndex++;
     }
 
+    private void initVariable(){
+        currentDynamicTextViewIndex = 0;
+        currentDynamicImageViewIndex = 0;
+    }
 
     private void initItem(){
         int count = 0;
