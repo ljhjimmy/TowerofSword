@@ -14,13 +14,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageButton start_button = (ImageButton)findViewById(R.id.start_button);
+       // ImageButton start_button = (ImageButton)findViewById(R.id.start_button);
         ImageButton btntap = (ImageButton)findViewById(R.id.taptostart);
 
         btntap.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.alpha));
 
         btntap.setOnClickListener(start_button_listener);
-        start_button.setOnClickListener(start_button_listener);
+        //start_button.setOnClickListener(start_button_listener);
     }
 
     private Button.OnClickListener start_button_listener = new Button.OnClickListener(){

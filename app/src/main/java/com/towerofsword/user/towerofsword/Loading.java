@@ -1,8 +1,10 @@
 package com.towerofsword.user.towerofsword;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -13,6 +15,9 @@ public class Loading extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
+
+
+
 
         Timer timer = new Timer(true);
         timer.schedule(new timerTask(),3000,2000);
