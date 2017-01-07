@@ -1,6 +1,7 @@
 package com.towerofsword.user.towerofsword;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,14 +11,16 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Loading extends AppCompatActivity {
-
+    public static final String PREFS_NAME = "MyPrefsFile";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
-
-
+        GlobalVariable globalVariable = (GlobalVariable) getApplicationContext();
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        int soul = settings.getInt("soul", 0);
+        globalVariable.soul = soul;
 
         Timer timer = new Timer(true);
         timer.schedule(new timerTask(),3000,2000);

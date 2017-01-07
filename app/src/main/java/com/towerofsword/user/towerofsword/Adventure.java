@@ -2,6 +2,7 @@ package com.towerofsword.user.towerofsword;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -41,7 +42,6 @@ public class Adventure extends AppCompatActivity {
     public static final int GATE = 11;
 
     private int[] itemIsWhat = new int[25];
-    private static GlobalVariable globalVariable ;
 
     private static final int[] idDynamicTextViewArray = {R.id.dynamicTextViewId1, R.id.dynamicTextViewId2, R.id.dynamicTextViewId3, R.id.dynamicTextViewId4, R.id.dynamicTextViewId5,
             R.id.dynamicTextViewId6, R.id.dynamicTextViewId7, R.id.dynamicTextViewId8, R.id.dynamicTextViewId9, R.id.dynamicTextViewId10};
@@ -52,6 +52,8 @@ public class Adventure extends AppCompatActivity {
     private static int currentDynamicTextViewIndex = 0;
     private static int currentDynamicImageViewIndex = 0;
     private Typeface font_pixel;
+    private static GlobalVariable globalVariable ;
+    public static final String PREFS_NAME = "MyPrefsFile";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +80,15 @@ public class Adventure extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStop(){
+        super.onStop();
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("soul", globalVariable.soul);
 
+        editor.commit();
+    }
 
     private void gainItemAnim(int num, int item){
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.adventure_layout);
