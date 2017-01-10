@@ -43,7 +43,7 @@ public class Home extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
             overridePendingTransition(0,0);
-            finish();
+
         }
     };
 

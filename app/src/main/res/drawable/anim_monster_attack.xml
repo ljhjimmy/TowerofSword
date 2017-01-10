@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+
+    <item android:drawable="@drawable/monsterattack0" android:duration="30" />
+    <item android:drawable="@drawable/monsterattack1" android:duration="30" />
+    <item android:drawable="@drawable/monsterattack2" android:duration="30" />
+    <item android:drawable="@drawable/monsterattack3" android:duration="30" />
+    <item android:drawable="@drawable/monsterattack4" android:duration="30" />
+    <item android:drawable="@drawable/monsterattack5" android:duration="30" />
+    <item android:drawable="@drawable/monsterattack6" android:duration="30" />
+    <item android:drawable="@drawable/monsterattack7" android:duration="30" />
+    <item android:drawable="@drawable/monsterattack8" android:duration="30" />
+    <item android:drawable="@drawable/monsterattack10" android:duration="30" />
+    <item android:drawable="@drawable/monsterattack12" android:duration="30" />
+    <item android:drawable="@drawable/monsterattack14" android:duration="30" />
+    <item android:drawable="@drawable/monsterattack16" android:duration="30" />
+    <item android:drawable="@drawable/monsterattack18" android:duration="30" />
+    <item android:drawable="@drawable/attack8" android:duration="30" />
+
+</animation-list>

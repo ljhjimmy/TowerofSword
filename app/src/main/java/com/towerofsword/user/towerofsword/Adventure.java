@@ -1,5 +1,6 @@
 package com.towerofsword.user.towerofsword;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -77,7 +78,16 @@ public class Adventure extends AppCompatActivity {
         btnStatus.setTypeface(font_pixel);
         btnStatus.setOnClickListener(listenerStatus);
 
-
+        TextView textViewStamina = (TextView)findViewById(R.id.textViewStamina);
+        textViewStamina.setTypeface(font_pixel);
+        TextView textViewStaminaNum = (TextView)findViewById(R.id.textViewStaminaNum);
+        textViewStaminaNum.setTypeface(font_pixel);
+        TextView  textViewFloorNum  = (TextView)findViewById(R.id.textViewFloorNum);
+        textViewFloorNum.setTypeface(font_pixel);
+        TextView textViewLevel = (TextView)findViewById(R.id.textViewLevel);
+        textViewLevel.setTypeface(font_pixel);
+        TextView textViewLevelNum = (TextView)findViewById(R.id.textViewLevelNum);
+        textViewLevelNum.setTypeface(font_pixel);
     }
 
     @Override
@@ -105,6 +115,7 @@ public class Adventure extends AppCompatActivity {
         tv.setPadding(0,5,0,0);
         tv.setGravity(Gravity.CENTER|Gravity.END);
         tv.setTextSize(20);
+        tv.setElevation(10);
 
         params = new RelativeLayout.LayoutParams(310, 80);
         params.addRule(RelativeLayout.ALIGN_START, R.id.btnStatus);
@@ -113,6 +124,7 @@ public class Adventure extends AppCompatActivity {
 
         im = new ImageView(this);
         im.setId(idDynamicImageViewArray[currentDynamicImageViewIndex]);
+        im.setElevation(10);
         switch(item) {
             case MONEY:
                 im.setImageResource(R.drawable.coin01);
@@ -149,7 +161,9 @@ public class Adventure extends AppCompatActivity {
         itemIsWhat[2] = PORTAL;
         itemIsWhat[22] = GATE;
 
-        while(count < 5){
+        itemIsWhat[17] = MONSTER;
+        item[17].setImageResource(R.drawable.monster1);
+        while(count < 4){
             num = (int) (Math.random()*25);
             if(itemIsWhat[num] == EMPTY){
                 itemIsWhat[num] = MONSTER;
@@ -217,6 +231,11 @@ public class Adventure extends AppCompatActivity {
                     v.setVisibility(View.INVISIBLE);
                     break;
                 case MONSTER:
+                    Intent intent = new Intent();
+                    intent.setClass(Adventure.this, Battle.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivityForResult(intent, 1);
+                    overridePendingTransition(0,0);
                     v.setVisibility(View.INVISIBLE);
                     break;
                 case PORTAL:

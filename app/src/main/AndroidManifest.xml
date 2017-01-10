@@ -20,6 +20,7 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".Adventure"></activity>
         <activity android:name=".Status"></activity>
+        <activity android:name=".Battle"></activity>
     </application>
 
 </manifest>

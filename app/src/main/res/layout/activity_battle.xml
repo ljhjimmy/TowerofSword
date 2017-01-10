@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        app:srcCompat="@drawable/monster1"
+        android:id="@+id/imageViewMonster"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/imageViewCharacter"
+        android:layout_marginTop="27dp"
+        android:scaleType="center" />
+
+    <ImageView
+        android:layout_height="15dp"
+        app:srcCompat="@android:color/holo_red_light"
+        android:id="@+id/imageViewPlayerHP"
+        android:layout_width="200dp"
+        android:layout_alignLeft="@+id/imageViewPlayerHPBorder"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="52dp"/>
+
+    <ImageView
+        android:layout_height="15dp"
+        app:srcCompat="@android:color/transparent"
+        android:id="@+id/imageViewPlayerHPBorder"
+        android:layout_marginBottom="52dp"
+        android:layout_width="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/hpborder"
+        android:elevation="1dp" />
+
+    <ImageView
+        app:srcCompat="@drawable/character"
+        android:id="@+id/imageViewCharacter"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="27dp"
+        android:layout_above="@+id/imageViewPlayerHPBorder"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="100/100"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageViewPlayerHPBorder"
+        android:layout_alignEnd="@+id/imageViewPlayerHPBorder"
+        android:id="@+id/textViewPlayerHPNum"
+        android:textColor="@android:color/white"
+        android:gravity="end"/>
+
+    <ImageView
+        android:layout_height="15dp"
+        app:srcCompat="@android:color/transparent"
+        android:id="@+id/imageViewMonsterHPBorder"
+        android:layout_below="@+id/imageViewMonster"
+        android:layout_centerHorizontal="true"
+        android:layout_width="250dp"
+        android:background="@drawable/hpborder"
+        android:layout_marginTop="10dp"
+        android:elevation="1dp" />
+
+    <ImageView
+        android:layout_height="15dp"
+        app:srcCompat="@android:color/holo_red_dark"
+        android:id="@+id/imageViewMonsterHP"
+        android:layout_below="@+id/imageViewMonster"
+        android:layout_alignLeft="@+id/imageViewMonsterHPBorder"
+        android:layout_width="250dp"
+        android:background="@drawable/hpborder"
+        android:layout_marginTop="10dp" />
+
+    <ImageView
+        app:srcCompat="@android:color/transparent"
+        android:id="@+id/imageViewCharacterAnim"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="27dp"
+        android:layout_above="@+id/imageViewPlayerHPBorder"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitCenter" />
+
+    <ImageView
+        app:srcCompat="@android:color/transparent"
+        android:id="@+id/imageViewMonsterAnim"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/imageViewCharacter"
+        android:layout_marginTop="27dp"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageViewMonster"
+        android:layout_alignEnd="@+id/imageViewMonster"
+        android:layout_marginTop="11dp"
+        android:id="@+id/textViewPlayerDamage"
+        android:textColor="@android:color/white"
+        android:textSize="24dp"/>
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewMonsterDamage"
+        android:textColor="@android:color/white"
+        android:textSize="24dp"
+        android:layout_alignTop="@+id/imageViewCharacter"
+        android:layout_alignStart="@+id/textViewPlayerDamage"
+        android:layout_marginLeft="20dp" />
+
+</RelativeLayout>

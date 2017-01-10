@@ -741,14 +741,82 @@
         android:text="status"
         android:layout_height="60dp"
         android:id="@+id/btnStatus"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:background="@drawable/buttonselect"
-        android:layout_width="130dp"
         android:typeface="monospace"
         android:paddingTop="5dp"
         android:layout_alignBottom="@+id/imageViewKirito"
         android:layout_toStartOf="@+id/imageViewKirito"
-        android:layout_marginBottom="26dp" />
+        android:layout_marginBottom="26dp"
+        android:layout_width="120dp" />
+
+    <TextView
+        android:text="150"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:id="@+id/textViewStaminaNum"
+        android:layout_below="@+id/textViewStamina"
+        android:layout_alignEnd="@+id/textViewStamina"
+        android:textSize="36sp"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:background="@drawable/textviewborder"
+        android:layout_marginTop="5dp"
+        android:paddingTop="5dp" />
+
+    <TextView
+        android:text="STAMINA"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:id="@+id/textViewStamina"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:layout_alignTop="@+id/imageViewKirito"
+        android:layout_toEndOf="@+id/imageViewKirito"
+        android:layout_marginTop="10dp"
+        android:paddingTop="5dp" />
+
+    <TextView
+        android:text="FLOOR 1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/imageView21"
+        android:layout_marginTop="10dp"
+        android:id="@+id/textViewFloorNum"
+        android:textColor="@android:color/white"
+        android:paddingTop="5dp"/>
+
+    <ImageView
+        app:srcCompat="@drawable/circle1"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageView27"
+        android:scaleType="fitXY"
+        android:layout_height="80dp"
+        android:layout_width="120dp" />
+
+    <TextView
+        android:text="LV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textViewFloorNum"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textViewLevel"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:text="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewLevelNum"
+        android:layout_below="@+id/textViewLevel"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="5dp" />
 
 
 </RelativeLayout>
