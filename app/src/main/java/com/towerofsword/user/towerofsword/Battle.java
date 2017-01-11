@@ -228,7 +228,7 @@ public class Battle extends AppCompatActivity {
 
         money = (int) Math.round(currentFloor * 10 * (1.1 - Math.random()*0.21) * moneyCoefficient[monsterWhich]);
         soul = (int) Math.round(currentFloor * 10 * (1.1 - Math.random()*0.21) * soulCoefficient[monsterWhich]);
-        exp = (int) Math.round(currentFloor * 100 * (1.1 - Math.random()*0.21) * expCoefficient[monsterWhich]);
+        exp = (int) Math.round(currentFloor * 50 * (1.1 - Math.random()*0.21) * expCoefficient[monsterWhich]);
     }
 
     private void battle(int who){

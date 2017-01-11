@@ -18,9 +18,28 @@ public class GlobalVariable extends Application {
     int playerATK = 50;
     int playerDEF = 50;
     int playerAGI = 0;
-    int playerLUK = 0;
+    int playerLUC = 0;
 
-    int monsterWhich = 1;
+    int monsterWhich = 0;
 
+    boolean isPlaying = false;
     boolean victory = false;
+
+    public void init(){
+        isPlaying = false;
+        money = 0;
+        soul = 0;
+        currentFloor=1;
+
+        stamina = 150;
+        lv = 1;
+        exp = 0;
+        ap = 0;
+
+        playerHP = 100;
+        playerATK = 50;
+        playerDEF = 50;
+        playerAGI = 0;
+        playerLUC = 0;
+    }
 }

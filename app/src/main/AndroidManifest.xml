@@ -36,6 +36,9 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Material.Dialog.NoActionBar" >
         </activity>
+        <activity android:name=".Ability"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

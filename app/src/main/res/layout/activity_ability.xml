@@ -133,7 +133,8 @@
                     android:layout_height="match_parent"
                     android:id="@+id/textViewHPNum2"
                     android:layout_weight="1"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:textColor="@android:color/holo_blue_dark" />
 
             </LinearLayout>
 
@@ -186,7 +187,8 @@
                     android:layout_height="match_parent"
                     android:id="@+id/textViewATKNum2"
                     android:layout_weight="1"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:textColor="@android:color/holo_blue_dark"/>
 
             </LinearLayout>
 
@@ -214,7 +216,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textViewDEF"
                 android:layout_weight="1"
-                android:text="ATK"
+                android:text="DEF"
                 android:textAlignment="center"
                 android:layout_width="40dp" />
             <LinearLayout
@@ -237,7 +239,7 @@
                     android:id="@+id/textViewDEFNum2"
                     android:layout_weight="1"
                     android:gravity="center"
-                     />
+                    android:textColor="@android:color/holo_blue_dark" />
 
             </LinearLayout>
 
@@ -288,7 +290,7 @@
                     android:id="@+id/textViewAGINum2"
                     android:layout_weight="1"
                     android:gravity="center"
-                    />
+                    android:textColor="@android:color/holo_blue_dark"/>
 
             </LinearLayout>
 
@@ -340,7 +342,7 @@
                     android:id="@+id/textViewLUCNum2"
                     android:layout_weight="1"
                     android:gravity="center"
-                    />
+                    android:textColor="@android:color/holo_blue_dark"/>
 
             </LinearLayout>
 
@@ -387,7 +389,7 @@
                     android:id="@+id/textViewCriticalNum"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:text="100"
+                    android:text="0%"
                     android:gravity="center"
                     android:textAlignment="center" />
 
@@ -437,7 +439,7 @@
                     android:id="@+id/textViewAvoidanceNum"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:text="100"
+                    android:text="0%"
                     android:gravity="center"
                     android:textAlignment="center" />
 
@@ -503,8 +505,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textViewAPempty2"
-                android:layout_weight="1" />
+                android:id="@+id/textViewAPNum2"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_blue_dark"/>
 
         </LinearLayout>
 
@@ -575,10 +579,10 @@
                 android:layout_weight="1" />
 
             <Button
-                android:text="Determine"
+                android:text="Confirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/buttonDetermine"
+                android:id="@+id/buttonConfirm"
                 android:layout_weight="1" />
         </LinearLayout>
 

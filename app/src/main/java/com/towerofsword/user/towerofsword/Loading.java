@@ -19,8 +19,35 @@ public class Loading extends AppCompatActivity {
 
         GlobalVariable globalVariable = (GlobalVariable) getApplicationContext();
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        int soul = settings.getInt("soul", 0);
-        globalVariable.soul = soul;
+        SharedPreferences.Editor editor = settings.edit();
+        boolean isPlaying =  settings.getBoolean("isPlaying", false);
+
+        if(isPlaying) {
+            int soul = settings.getInt("soul", 0);
+            globalVariable.soul = soul;
+            int money = settings.getInt("money", 0);
+            globalVariable.money = money;
+            int currentFloor = settings.getInt("currentFloor", 0);
+            globalVariable.currentFloor = currentFloor;
+            int lv = settings.getInt("lv", 0);
+            globalVariable.lv = lv;
+            int stamina = settings.getInt("stamina", 0);
+            globalVariable.stamina = stamina;
+            int exp = settings.getInt("exp", 0);
+            globalVariable.exp = exp;
+            int ap = settings.getInt("ap", 0);
+            globalVariable.ap = ap;
+
+            globalVariable.playerATK= settings.getInt("playerATK", 0);
+            globalVariable.playerDEF= settings.getInt("playerDEF", 0);
+            globalVariable.playerHP= settings.getInt("playerHP", 0);
+            globalVariable.playerAGI= settings.getInt("playerAGI", 0);
+            globalVariable.playerLUC= settings.getInt("playerLUC", 0);
+        }
+        else{
+            editor.clear();
+            globalVariable.init();
+        }
 
         Timer timer = new Timer(true);
         timer.schedule(new timerTask(),3000,2000);

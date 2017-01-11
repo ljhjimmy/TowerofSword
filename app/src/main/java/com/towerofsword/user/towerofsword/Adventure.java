@@ -98,7 +98,7 @@ public class Adventure extends AppCompatActivity {
         }
         initBlock();
         initItem();
-
+        globalVariable.isPlaying = true;
     }
 
 
@@ -118,11 +118,17 @@ public class Adventure extends AppCompatActivity {
                         item[22].setClickable(true);
                     }
                     item[monsterIndex].setVisibility(View.INVISIBLE);
+
+                    Intent intent = new Intent();
+                    intent.setClass(Adventure.this, Ability.class);
+                    startActivity(intent);
+                    overridePendingTransition(0,0);
                 }
                 else{
                     globalVariable.stamina =  globalVariable.stamina-10;
                     textViewStaminaNum.setText(String.valueOf(globalVariable.stamina));
                 }
+                checkGameOver();
             }
         }
     }
@@ -352,6 +358,15 @@ public class Adventure extends AppCompatActivity {
             steps = steps - 3;
             globalVariable.stamina  = globalVariable.stamina-1;
             textViewStaminaNum.setText(String.valueOf(globalVariable.stamina));
+            checkGameOver();
+        }
+    }
+
+    private void checkGameOver(){
+        if(globalVariable.stamina<=0){
+            globalVariable.isPlaying=false;
+            globalVariable.init();
+            finish();
         }
     }
 
@@ -393,7 +408,12 @@ public class Adventure extends AppCompatActivity {
         editor.putInt("stamina", globalVariable.stamina);
         editor.putInt("exp", globalVariable.exp);
         editor.putInt("ap", globalVariable.ap);
-
+        editor.putBoolean("isPlaying", globalVariable.isPlaying);
+        editor.putInt("playerHP", globalVariable.playerHP);
+        editor.putInt("playerATK", globalVariable.playerATK);
+        editor.putInt("playerDEF", globalVariable.playerDEF);
+        editor.putInt("playerAGI", globalVariable.playerAGI);
+        editor.putInt("playerLUC", globalVariable.playerLUC);
         editor.commit();
 
         initVariable();
