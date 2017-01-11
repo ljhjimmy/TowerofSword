@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -61,10 +62,29 @@ public class Adventure extends AppCompatActivity {
     TextView textViewLevelNum;
     private int steps = 0;
 
+    int monsterIndex = -1;
+    private static final int[] idMonsters = {R.drawable.monster1, R.drawable.monster2, R.drawable.monster3, R.drawable.monster4,};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adventure);
+
+        Button btnStatus = (Button)findViewById(R.id.btnStatus);
+        font_pixel = Typeface.createFromAsset(getAssets(), "fonts/manaspace.ttf");
+        btnStatus.setTypeface(font_pixel);
+        btnStatus.setOnClickListener(listenerStatus);
+        TextView textViewStamina = (TextView)findViewById(R.id.textViewStamina);
+        textViewStamina.setTypeface(font_pixel);
+        textViewStaminaNum = (TextView)findViewById(R.id.textViewStaminaNum);
+        textViewStaminaNum.setTypeface(font_pixel);
+        textViewFloorNum  = (TextView)findViewById(R.id.textViewFloorNum);
+        textViewFloorNum.setTypeface(font_pixel);
+        TextView textViewLevel = (TextView)findViewById(R.id.textViewLevel);
+        textViewLevel.setTypeface(font_pixel);
+        textViewLevelNum = (TextView)findViewById(R.id.textViewLevelNum);
+        textViewLevelNum.setTypeface(font_pixel);
+
         globalVariable = (GlobalVariable) getApplicationContext();
         initVariable();
 
@@ -79,32 +99,8 @@ public class Adventure extends AppCompatActivity {
         initBlock();
         initItem();
 
-        Button btnStatus = (Button)findViewById(R.id.btnStatus);
-        font_pixel = Typeface.createFromAsset(getAssets(), "fonts/manaspace.ttf");
-        btnStatus.setTypeface(font_pixel);
-        btnStatus.setOnClickListener(listenerStatus);
-
-        TextView textViewStamina = (TextView)findViewById(R.id.textViewStamina);
-        textViewStamina.setTypeface(font_pixel);
-        textViewStaminaNum = (TextView)findViewById(R.id.textViewStaminaNum);
-        textViewStaminaNum.setTypeface(font_pixel);
-        textViewFloorNum  = (TextView)findViewById(R.id.textViewFloorNum);
-        textViewFloorNum.setTypeface(font_pixel);
-        TextView textViewLevel = (TextView)findViewById(R.id.textViewLevel);
-        textViewLevel.setTypeface(font_pixel);
-        textViewLevelNum = (TextView)findViewById(R.id.textViewLevelNum);
-        textViewLevelNum.setTypeface(font_pixel);
     }
 
-    @Override
-    protected void onStop(){
-        super.onStop();
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("soul", globalVariable.soul);
-
-        editor.commit();
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -115,6 +111,13 @@ public class Adventure extends AppCompatActivity {
                 if(result){
                     globalVariable.stamina =  globalVariable.stamina-3;
                     textViewStaminaNum.setText(String.valueOf(globalVariable.stamina));
+                    textViewLevelNum.setText(String.valueOf(globalVariable.lv));
+
+                    if(monsterIndex==17){
+                        item[22].setImageResource(R.drawable.door_open);
+                        item[22].setClickable(true);
+                    }
+                    item[monsterIndex].setVisibility(View.INVISIBLE);
                 }
                 else{
                     globalVariable.stamina =  globalVariable.stamina-10;
@@ -174,25 +177,51 @@ public class Adventure extends AppCompatActivity {
         currentDynamicTextViewIndex = 0;
         currentDynamicImageViewIndex = 0;
         steps = 0;
+
+        String floor = "FLOOR " + String.valueOf(globalVariable.currentFloor);
+        textViewFloorNum.setText(floor);
+        textViewStaminaNum.setText(String.valueOf(globalVariable.stamina));
+        textViewLevelNum.setText(String.valueOf(globalVariable.lv));
+    }
+
+    private int monsterProbability(){
+        int num = (int)(Math.random()*100);
+        int result=0;
+        if(num<40){
+            result = 0;
+        }
+        else if(num>=40 && num<70){
+            result = 1;
+        }
+        else if(num>=70 && num<90){
+            result = 2;
+        }
+        else if(num>=90){
+            result = 3;
+        }
+        return result;
     }
 
     private void initItem(){
         int count = 0;
         int num;
+        int randomNum = monsterProbability();
 
         for(int i=0;i<25;i++){
             itemIsWhat[i] = EMPTY;
         }
         itemIsWhat[2] = PORTAL;
         itemIsWhat[22] = GATE;
+        item[22].setImageResource(R.drawable.door);
 
         itemIsWhat[17] = MONSTER;
-        item[17].setImageResource(R.drawable.monster1);
+        item[17].setImageResource(idMonsters[randomNum]);
         while(count < 4){
             num = (int) (Math.random()*25);
+            randomNum = monsterProbability();
             if(itemIsWhat[num] == EMPTY){
                 itemIsWhat[num] = MONSTER;
-                item[num].setImageResource(R.drawable.monster1);
+                item[num].setImageResource(idMonsters[randomNum]);
                 count++;
             }
         }
@@ -227,7 +256,6 @@ public class Adventure extends AppCompatActivity {
             }
         }
         item[2].setClickable(true);
-        item[22].setClickable(true);
     }
 
     private ImageButton.OnClickListener listenerItem = new ImageButton.OnClickListener(){
@@ -256,18 +284,26 @@ public class Adventure extends AppCompatActivity {
                     v.setVisibility(View.INVISIBLE);
                     break;
                 case MONSTER:
+                    monsterIndex = index;
+                    for(int i=0;i<idMonsters.length;i++) {
+                        if(item[index].getDrawable().getConstantState().equals
+                                (getResources().getDrawable(idMonsters[i]).getConstantState())){
+                            globalVariable.monsterWhich = i;
+                            break;
+                        }
+                    }
+
                     Intent intent = new Intent();
                     intent.setClass(Adventure.this, Battle.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivityForResult(intent, 1);
                     overridePendingTransition(0,0);
-                    v.setVisibility(View.INVISIBLE);
                     break;
                 case PORTAL:
 
                     break;
                 case GATE:
-
+                    nextFloor(1);
                     break;
                 default:
             }
@@ -343,6 +379,26 @@ public class Adventure extends AppCompatActivity {
         block[7].setClickable(true);
         block[2].setVisibility(View.INVISIBLE);
         block[22].setVisibility(View.INVISIBLE);
+    }
+
+    private void nextFloor(int num){
+        globalVariable.currentFloor += num;
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("soul", globalVariable.soul);
+        editor.putInt("money", globalVariable.money);
+        editor.putInt("currentFloor", globalVariable.currentFloor);
+        editor.putInt("lv", globalVariable.lv);
+        editor.putInt("stamina", globalVariable.stamina);
+        editor.putInt("exp", globalVariable.exp);
+        editor.putInt("ap", globalVariable.ap);
+
+        editor.commit();
+
+        initVariable();
+        initBlock();
+        initItem();
     }
 
 }

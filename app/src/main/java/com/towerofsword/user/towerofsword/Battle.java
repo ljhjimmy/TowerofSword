@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -20,19 +21,31 @@ import android.widget.TextView;
 
 public class Battle extends AppCompatActivity {
 
+    int currentFloor;
     int playerHPPercentage = 100;
     int monsterHPPercentage = 100;
     int playerHP = 100;
     int playerHPMax = 100;
     int monsterHP = 300;
     int monsterHPMax = 300;
-    int playerATK = 90;
+    int playerDEF = 50;
+    int playerDEFPercentage = 0;
+    int playerATK = 50;
     int monsterATK = 10;
     int playerDMG = 0;
     int monsterDMG = 0;
+
     int money = 100;
     int soul = 100;
     int exp = 1599;
+
+    double[] HPCoefficient = {1.0 ,1.15, 1.3, 1.5};
+    double[] ATKCoefficient = {1.0 ,1.15, 1.3, 1.5};
+    double[] moneyCoefficient = {1.0 ,1.2, 1.4, 1.6};
+    double[] soulCoefficient = {1.0 ,1.2, 1.4, 1.6};
+    double[] expCoefficient = {1.0 ,1.3, 1.6, 2.0};
+
+    int monsterWhich;
 
     private static  AnimationDrawable ani;
     private static  AnimationDrawable ani2;
@@ -52,10 +65,15 @@ public class Battle extends AppCompatActivity {
     private ViewGroup.LayoutParams params2;
     private TextView textViewPlayerHPNum;
 
+    private static GlobalVariable globalVariable ;
+    ImageView imageViewMonster;
+    private static final int[] idMonsters = {R.drawable.monster1, R.drawable.monster2, R.drawable.monster3, R.drawable.monster4};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
+        globalVariable = (GlobalVariable) getApplicationContext();
         battleIsEnd = false;
         touched = false;
         playerWin = false;
@@ -63,6 +81,8 @@ public class Battle extends AppCompatActivity {
         ani2 = (AnimationDrawable)getResources().getDrawable(R.drawable.anim_monster_attack);
         aniDuration = ani.getNumberOfFrames()*ani.getDuration(0);
         ani2Duration = ani2.getNumberOfFrames()*ani2.getDuration(0);
+
+        init();
 
         font_pixel = Typeface.createFromAsset(getAssets(), "fonts/manaspace.ttf");
         textViewPlayerDamage = (TextView)findViewById(R.id.textViewPlayerDamage);
@@ -77,6 +97,8 @@ public class Battle extends AppCompatActivity {
         textViewPlayerHPNum = (TextView)findViewById(R.id.textViewPlayerHPNum);
         textViewPlayerHPNum.setTypeface(font_pixel);
 
+        imageViewMonster = (ImageView)findViewById(R.id.imageViewMonster);
+        imageViewMonster.setImageResource(idMonsters[monsterWhich]);
 
     }
     @Override
@@ -155,6 +177,7 @@ public class Battle extends AppCompatActivity {
                     Thread.sleep(aniDuration);
 
                     if(battleIsEnd){
+                        Thread.sleep(500);
                         battleResult();
                         break;
                     }
@@ -162,6 +185,7 @@ public class Battle extends AppCompatActivity {
                     mHandler.sendEmptyMessage(2);
                     Thread.sleep(ani2Duration);
                     if(battleIsEnd){
+                        Thread.sleep(500);
                         battleResult();
                         break;
                     }
@@ -172,12 +196,47 @@ public class Battle extends AppCompatActivity {
         }
     }
 
+    private void init(){
+        playerHP = globalVariable.playerHP;
+        playerHPMax = playerHP;
+        playerATK = globalVariable.playerATK;
+        playerDEF = globalVariable.playerDEF;
+        monsterWhich = globalVariable.monsterWhich;
+        currentFloor = globalVariable.currentFloor;
+
+        if(playerDEF > currentFloor*100){
+            int remainDEF = playerDEF - currentFloor*100;
+            if(remainDEF <= 500){
+                playerDEFPercentage =10 +(int) ((double)(remainDEF)*10/500);
+            }
+            else if(remainDEF > 500 && remainDEF <=1500){
+                playerDEFPercentage =20 +(int) ((double)(remainDEF-500)*10/1000);
+            }
+            else if(remainDEF > 1500 && remainDEF <=5000){
+                playerDEFPercentage =30 +(int) ((double)(remainDEF-1500)*10/3500);
+            }
+            else{
+                playerDEFPercentage =40;
+            }
+        }
+        else{
+            playerDEFPercentage = 0;
+        }
+
+        monsterHP = (int) Math.round(currentFloor * 300  * (1.2 - Math.random()*0.41) * HPCoefficient[monsterWhich]);
+        monsterHPMax = monsterHP;
+
+        money = (int) Math.round(currentFloor * 10 * (1.1 - Math.random()*0.21) * moneyCoefficient[monsterWhich]);
+        soul = (int) Math.round(currentFloor * 10 * (1.1 - Math.random()*0.21) * soulCoefficient[monsterWhich]);
+        exp = (int) Math.round(currentFloor * 100 * (1.1 - Math.random()*0.21) * expCoefficient[monsterWhich]);
+    }
+
     private void battle(int who){
         int[] damageRotation = {-10,0,10};
         int randomNum = (int)(Math.random()*3);
 
         if(who==1) {
-            playerDMG = playerATK;
+            playerDMG =  (int) Math.round(playerATK *(1.2 - Math.random()*0.41));
             textViewPlayerDamage.setText(String.valueOf(playerDMG));
             monsterHP = monsterHP - playerDMG;
             monsterHPPercentage = (int) ((double) monsterHP * 100 / monsterHPMax);
@@ -190,6 +249,11 @@ public class Battle extends AppCompatActivity {
                 params2.width = 0;
                 battleIsEnd = true;
                 playerWin = true;
+
+                imageViewMonster.startAnimation(AnimationUtils.loadAnimation(Battle.this, R.anim.anim_monster_vanish));
+                ImageView imageViewMonsterHPBorder = (ImageView)findViewById(R.id.imageViewMonsterHPBorder);
+                imageViewMonsterHPBorder.setVisibility(View.INVISIBLE);
+
             }
             else{
                 params2.width = convertDpToPixel((int) (monsterHPPercentage * 2.5), this);
@@ -197,7 +261,8 @@ public class Battle extends AppCompatActivity {
             imageViewMonsterHP.setLayoutParams(params2);
         }
         else if (who ==2){
-            monsterDMG = monsterATK;
+            monsterATK = (int) Math.round(currentFloor * 10  * (1.2 - Math.random()*0.41) * ATKCoefficient[monsterWhich]);
+            monsterDMG = (int) Math.round(monsterATK * (1 - playerDEFPercentage*0.01));
             textViewMonsterDamage.setText(String.valueOf(monsterDMG));
             playerHP = playerHP - monsterDMG;
             playerHPPercentage = (int)((double)playerHP*100/playerHPMax);

@@ -20,5 +20,7 @@ public class GlobalVariable extends Application {
     int playerAGI = 0;
     int playerLUK = 0;
 
+    int monsterWhich = 1;
+
     boolean victory = false;
 }
