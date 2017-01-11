@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/biglayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewempty"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:id="@+id/LV_and_EXP"
+            android:layout_height="25dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_empty1"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="LV:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_LV"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_LVnum"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="EXP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_EXP"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_EXPnum1"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="/"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_EXPnum2"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_empty2"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewempty2"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/biglayout"
+            android:id="@+id/HP">
+
+            <TextView
+                android:text="HP"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewHP"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:layout_width="40dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:layout_width="105dp">
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:id="@+id/textViewHPNum1"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:text="100"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textViewHPNum2"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <Button
+                android:text="HALF"
+                android:layout_height="40dp"
+                android:id="@+id/buttonAddHPHalf"
+                android:layout_weight="1"
+                android:layout_width="25dp" />
+
+            <Button
+                android:text="ALL"
+                android:id="@+id/buttonAddHPAll"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_width="25dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/ATK"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewATK"
+                android:layout_weight="1"
+                android:text="ATK"
+                android:textAlignment="center" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:layout_width="105dp">
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:id="@+id/textViewATKNum1"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:text="100"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textViewATKNum2"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <Button
+                android:text="HALF"
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:id="@+id/buttonAddATKHalf"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="ALL"
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:id="@+id/buttonAddATKAll"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/DEF">
+            <TextView
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewDEF"
+                android:layout_weight="1"
+                android:text="ATK"
+                android:textAlignment="center"
+                android:layout_width="40dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:layout_width="105dp">
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:id="@+id/textViewDEFNum1"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:text="100"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textViewDEFNum2"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                     />
+
+            </LinearLayout>
+
+            <Button
+                android:text="HALF"
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:id="@+id/buttonAddDEFHalf"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="ALL"
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:id="@+id/buttonAddDEFAll"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/AGI">
+            <TextView
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewAGI"
+                android:layout_weight="1"
+                android:text="AGI"
+                android:textAlignment="center"
+                android:layout_width="40dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:layout_width="105dp">
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:id="@+id/textViewAGINum1"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:text="100"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textViewAGINum2"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    />
+
+            </LinearLayout>
+
+            <Button
+                android:text="HALF"
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:id="@+id/buttonAddAGIHalf"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="ALL"
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:id="@+id/buttonAddAGIAll"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/LUC">
+            <TextView
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewLUC"
+                android:layout_weight="1"
+                android:text="LUC"
+                android:textAlignment="center"
+                android:layout_width="40dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:layout_width="105dp">
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:id="@+id/textViewLUCNum1"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:text="100"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textViewLUCNum2"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    />
+
+            </LinearLayout>
+
+            <Button
+                android:text="HALF"
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:id="@+id/buttonAddLUCHalf"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="ALL"
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:id="@+id/buttonAddLUCAll"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/Critical">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:id="@+id/textCriticalLUC"
+                android:layout_weight="1"
+                android:text="Critical"
+                android:textAlignment="center"
+                android:layout_width="40dp" />
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:layout_width="105dp"
+                android:gravity="center"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:id="@+id/textViewCriticalNum"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:text="100"
+                    android:gravity="center"
+                    android:textAlignment="center" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:text="HALF"
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:id="@+id/buttonAddCriticalHalf"
+                android:layout_weight="1"
+                android:visibility="invisible" />
+
+            <Button
+                android:text="ALL"
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:id="@+id/buttonAddCriticalAll"
+                android:layout_weight="1"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/Avoidance">
+            <TextView
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewAvoidance"
+                android:layout_weight="1"
+                android:text="Avoidance"
+                android:textAlignment="center"
+                android:layout_width="40dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:layout_width="105dp"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:id="@+id/textViewAvoidanceNum"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:text="100"
+                    android:gravity="center"
+                    android:textAlignment="center" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:text="HALF"
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:id="@+id/buttonAddAvoidanceHalf"
+                android:layout_weight="1"
+                android:visibility="invisible" />
+
+            <Button
+                android:text="ALL"
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:id="@+id/buttonAddAvoidanceAll"
+                android:layout_weight="1"
+                android:visibility="invisible" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/AP">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewAPempty1"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="AP"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:id="@+id/textViewAP"
+                android:layout_weight="1"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewAPNum"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:text="100" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewAPempty2"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/addingbtns">
+
+            <Button
+                android:text="HP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonAddHP"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="ATK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonAddATK"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="DEF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonAddDEF"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="AGI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonAddAGI"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="LUC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonAddLUC"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/yesnobtns">
+
+            <Button
+                android:text="Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonCancel"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="Determine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonDetermine"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <Button
+                android:text="Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="invisible" />
+
+            <Button
+                android:text="Back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonBack"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
