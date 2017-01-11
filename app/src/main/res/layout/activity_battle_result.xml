@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="400dp">
+
+    <TextView
+        android:text="+30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewMoneyResultNum"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:layout_alignBaseline="@+id/textViewMoneyResult"
+        android:layout_alignBottom="@+id/textViewMoneyResult"
+        android:layout_toEndOf="@+id/textViewMoneyResult"
+        android:layout_marginStart="20dp" />
+
+    <TextView
+        android:text="+30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewSoulResultNum"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:layout_alignBaseline="@+id/textViewSoulResult"
+        android:layout_alignBottom="@+id/textViewSoulResult"
+        android:layout_alignStart="@+id/textViewMoneyResultNum" />
+
+    <TextView
+        android:text="0 level up!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewLevelUp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/textViewExpResultNum"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="59dp" />
+
+    <TextView
+        android:text="30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewLvResultNum"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:layout_alignBaseline="@+id/textViewLvResult"
+        android:layout_alignBottom="@+id/textViewLvResult"
+        android:layout_alignStart="@+id/textViewMoneyResultNum" />
+
+    <TextView
+        android:text="+3000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewExpResultNum"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:layout_alignBaseline="@+id/textViewExpResult"
+        android:layout_alignBottom="@+id/textViewExpResult"
+        android:layout_alignStart="@+id/textViewSoulResultNum" />
+
+    <TextView
+        android:text="LV:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewLvResult"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/textViewLevelUp"
+        android:layout_alignStart="@+id/textViewExpResult" />
+
+    <TextView
+        android:text="STAMINA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewStaminaResult"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textViewSoulResult"
+        android:layout_marginBottom="21dp" />
+
+    <TextView
+        android:text="-3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewStaminaResultNum"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:layout_alignBaseline="@+id/textViewStaminaResult"
+        android:layout_alignBottom="@+id/textViewStaminaResult"
+        android:layout_toRightOf="@+id/textViewStaminaResult"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:text="EXP:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:id="@+id/textViewExpResult"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:layout_below="@+id/textViewSoulResult"
+        android:layout_alignStart="@+id/textViewSoulResult" />
+
+    <TextView
+        android:text="SOUL:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:id="@+id/textViewSoulResult"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:layout_below="@+id/textViewMoneyResult"
+        android:layout_alignStart="@+id/textViewMoneyResult" />
+
+    <TextView
+        android:text="MONEY:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="60dp"
+        android:id="@+id/textViewMoneyResult"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="RESULT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewResult"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        android:layout_marginTop="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/textViewStaminaResultNum" />
+
+</RelativeLayout>

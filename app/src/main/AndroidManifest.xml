@@ -9,18 +9,33 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Loading">
+        <activity android:name=".Loading"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Home"></activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".Adventure"></activity>
-        <activity android:name=".Status"></activity>
-        <activity android:name=".Battle"></activity>
+        <activity android:name=".Home"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
+     </activity>
+        <activity android:name=".Adventure"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Status"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Battle"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".BattleResult"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Material.Dialog.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

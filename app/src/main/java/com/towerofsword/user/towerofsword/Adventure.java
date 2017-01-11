@@ -55,6 +55,12 @@ public class Adventure extends AppCompatActivity {
     private Typeface font_pixel;
     private static GlobalVariable globalVariable ;
     public static final String PREFS_NAME = "MyPrefsFile";
+
+    TextView textViewStaminaNum;
+    TextView textViewFloorNum;
+    TextView textViewLevelNum;
+    private int steps = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,13 +86,13 @@ public class Adventure extends AppCompatActivity {
 
         TextView textViewStamina = (TextView)findViewById(R.id.textViewStamina);
         textViewStamina.setTypeface(font_pixel);
-        TextView textViewStaminaNum = (TextView)findViewById(R.id.textViewStaminaNum);
+        textViewStaminaNum = (TextView)findViewById(R.id.textViewStaminaNum);
         textViewStaminaNum.setTypeface(font_pixel);
-        TextView  textViewFloorNum  = (TextView)findViewById(R.id.textViewFloorNum);
+        textViewFloorNum  = (TextView)findViewById(R.id.textViewFloorNum);
         textViewFloorNum.setTypeface(font_pixel);
         TextView textViewLevel = (TextView)findViewById(R.id.textViewLevel);
         textViewLevel.setTypeface(font_pixel);
-        TextView textViewLevelNum = (TextView)findViewById(R.id.textViewLevelNum);
+        textViewLevelNum = (TextView)findViewById(R.id.textViewLevelNum);
         textViewLevelNum.setTypeface(font_pixel);
     }
 
@@ -98,6 +104,24 @@ public class Adventure extends AppCompatActivity {
         editor.putInt("soul", globalVariable.soul);
 
         editor.commit();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                boolean result=data.getBooleanExtra("result",false);
+                if(result){
+                    globalVariable.stamina =  globalVariable.stamina-3;
+                    textViewStaminaNum.setText(String.valueOf(globalVariable.stamina));
+                }
+                else{
+                    globalVariable.stamina =  globalVariable.stamina-10;
+                    textViewStaminaNum.setText(String.valueOf(globalVariable.stamina));
+                }
+            }
+        }
     }
 
     private void gainItemAnim(int num, int item){
@@ -149,6 +173,7 @@ public class Adventure extends AppCompatActivity {
     private void initVariable(){
         currentDynamicTextViewIndex = 0;
         currentDynamicImageViewIndex = 0;
+        steps = 0;
     }
 
     private void initItem(){
@@ -280,9 +305,19 @@ public class Adventure extends AppCompatActivity {
             }
             v.setVisibility(View.INVISIBLE);
             item[index].setClickable(true);
+
+            steps++;
+            checkSteps();
         }
     };
 
+    private void checkSteps(){
+        if (steps>=3){
+            steps = steps - 3;
+            globalVariable.stamina  = globalVariable.stamina-1;
+            textViewStaminaNum.setText(String.valueOf(globalVariable.stamina));
+        }
+    }
 
     private Button.OnClickListener listenerStatus = new Button.OnClickListener(){
         public void onClick(View v) {

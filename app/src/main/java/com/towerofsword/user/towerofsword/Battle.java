@@ -1,6 +1,8 @@
 package com.towerofsword.user.towerofsword;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
@@ -28,12 +30,17 @@ public class Battle extends AppCompatActivity {
     int monsterATK = 10;
     int playerDMG = 0;
     int monsterDMG = 0;
+    int money = 100;
+    int soul = 100;
+    int exp = 1599;
+
     private static  AnimationDrawable ani;
     private static  AnimationDrawable ani2;
     private static int aniDuration;
     private static int ani2Duration;
     private static boolean touched = false;
     private static boolean battleIsEnd = false;
+    private static boolean playerWin = false;
 
     Thread AnimationThread ;
     private Typeface font_pixel;
@@ -51,6 +58,7 @@ public class Battle extends AppCompatActivity {
         setContentView(R.layout.activity_battle);
         battleIsEnd = false;
         touched = false;
+        playerWin = false;
         ani = (AnimationDrawable)getResources().getDrawable(R.drawable.anim_attack);
         ani2 = (AnimationDrawable)getResources().getDrawable(R.drawable.anim_monster_attack);
         aniDuration = ani.getNumberOfFrames()*ani.getDuration(0);
@@ -91,6 +99,16 @@ public class Battle extends AppCompatActivity {
             touched = true;
         }
         return super.onTouchEvent(event);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                battleEnd();
+            }
+        }
     }
 
     private void hitMonsterAnim(){
@@ -137,13 +155,16 @@ public class Battle extends AppCompatActivity {
                     Thread.sleep(aniDuration);
 
                     if(battleIsEnd){
-                        finish();
+                        battleResult();
                         break;
                     }
 
                     mHandler.sendEmptyMessage(2);
                     Thread.sleep(ani2Duration);
-
+                    if(battleIsEnd){
+                        battleResult();
+                        break;
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -168,6 +189,7 @@ public class Battle extends AppCompatActivity {
             if (monsterHP <= 0) {
                 params2.width = 0;
                 battleIsEnd = true;
+                playerWin = true;
             }
             else{
                 params2.width = convertDpToPixel((int) (monsterHPPercentage * 2.5), this);
@@ -186,8 +208,10 @@ public class Battle extends AppCompatActivity {
             textViewMonsterDamage.startAnimation(AnimationUtils.loadAnimation(Battle.this, R.anim.anim_damage));
 
             if(playerHP<=0){
+                textViewPlayerHPNum.setText("0/" + playerHPMax );
                 params.width = 0;
                 battleIsEnd = true;
+                playerWin = false;
             }
             else{
                 params.width= convertDpToPixel(playerHPPercentage*2,this);
@@ -196,6 +220,26 @@ public class Battle extends AppCompatActivity {
         }
 
     }
+
+    private void battleResult(){
+        Intent intent = new Intent();
+        intent.setClass(Battle.this,BattleResult.class);
+        intent.putExtra("money",money);
+        intent.putExtra("soul",soul);
+        intent.putExtra("exp",exp);
+        intent.putExtra("playerWin",playerWin);
+        startActivityForResult(intent, 1);
+        overridePendingTransition(0,0);
+    }
+
+    private void battleEnd(){
+        boolean result = playerWin;
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("result",result);
+        setResult(Activity.RESULT_OK,returnIntent);
+        finish();
+        overridePendingTransition(0,0);
+   }
 
     public static int convertDpToPixel(int dp, Context context){
         Resources resources = context.getResources();
