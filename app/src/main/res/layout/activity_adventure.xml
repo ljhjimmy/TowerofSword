@@ -818,5 +818,16 @@
         android:textColor="@android:color/white"
         android:layout_marginTop="5dp" />
 
+    <Button
+        android:text="EXIT"
+        android:layout_height="40dp"
+        android:id="@+id/btnExit"
+        android:textSize="20sp"
+        android:background="@drawable/buttonselect"
+        android:paddingTop="5dp"
+        android:layout_width="80dp"
+        android:layout_alignTop="@+id/textViewLevel"
+        android:layout_alignEnd="@+id/imageView25" />
+
 
 </RelativeLayout>

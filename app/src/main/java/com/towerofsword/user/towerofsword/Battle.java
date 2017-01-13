@@ -100,6 +100,7 @@ public class Battle extends AppCompatActivity {
         imageViewMonster = (ImageView)findViewById(R.id.imageViewMonster);
         imageViewMonster.setImageResource(idMonsters[monsterWhich]);
 
+        textViewPlayerHPNum.setText(playerHP + "/" + playerHPMax );
     }
     @Override
     public void onDestroy(){

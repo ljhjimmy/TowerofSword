@@ -61,6 +61,18 @@ public class Ability extends AppCompatActivity {
         buttonAddHP.setOnClickListener(listenerHP);
         buttonAddATK.setOnClickListener(listenerATK);
         buttonAddDEF.setOnClickListener(listenerDEF);
+        buttonAddAGI.setOnClickListener(listenerAGI);
+        buttonAddLUC.setOnClickListener(listenerLUC);
+        buttonAddHPHalf.setOnClickListener(listenerHPHalf);
+        buttonAddATKHalf.setOnClickListener(listenerATKHalf);
+        buttonAddDEFHalf.setOnClickListener(listenerDEFHalf);
+        buttonAddAGIHalf.setOnClickListener(listenerAGIHalf);
+        buttonAddLUCHalf.setOnClickListener(listenerLUCHalf);
+        buttonAddHPAll.setOnClickListener(listenerHPAll);
+        buttonAddATKAll.setOnClickListener(listenerATKAll);
+        buttonAddDEFAll.setOnClickListener(listenerDEFAll);
+        buttonAddAGIAll.setOnClickListener(listenerAGIAll);
+        buttonAddLUCAll.setOnClickListener(listenerLUCAll);
 
         buttonBack.setOnClickListener(listenerBack);
         buttonConfirm.setOnClickListener(listenerConfirm);
@@ -97,6 +109,144 @@ public class Ability extends AppCompatActivity {
         textViewAPNum.setText(String.valueOf(globalVariable.ap));
     }
 
+    private Button.OnClickListener listenerHPHalf = new Button.OnClickListener(){
+        public void onClick(View v) {
+            if(ap<globalVariable.ap) {
+                int apInvest = (int)(Math.round((double)(globalVariable.ap - ap)/2));
+                hp += apInvest;
+                ap += apInvest;
+                String str1 = "+" + hp*10;
+                String str2 = "-" + ap;
+                textViewHPNum2.setText(str1);
+                textViewAPNum2.setText(str2);
+            }
+        }
+    };
+
+    private Button.OnClickListener listenerATKHalf = new Button.OnClickListener(){
+        public void onClick(View v) {
+            if(ap<globalVariable.ap) {
+                int apInvest = (int)(Math.round((double)(globalVariable.ap - ap)/2));
+                atk += apInvest;
+                ap += apInvest;
+                String str1 = "+" + atk * 5;
+                String str2 = "-" + ap;
+                textViewATKNum2.setText(str1);
+                textViewAPNum2.setText(str2);
+            }
+        }
+    };
+    private Button.OnClickListener listenerDEFHalf = new Button.OnClickListener(){
+        public void onClick(View v) {
+            if(ap<globalVariable.ap) {
+                int apInvest = (int)(Math.round((double)(globalVariable.ap - ap)/2));
+                def += apInvest;
+                ap += apInvest;
+                String str1 = "+" + def * 5;
+                String str2 = "-" + ap;
+                textViewDEFNum2.setText(str1);
+                textViewAPNum2.setText(str2);
+            }
+        }
+    };
+
+    private Button.OnClickListener listenerAGIHalf = new Button.OnClickListener(){
+        public void onClick(View v) {
+            if(ap<globalVariable.ap) {
+                int apInvest = (int)(Math.round((double)(globalVariable.ap - ap)/2));
+                agi += apInvest;
+                ap += apInvest;
+                String str1 = "+" + agi;
+                String str2 = "-" + ap;
+                textViewAGINum2.setText(str1);
+                textViewAPNum2.setText(str2);
+            }
+        }
+    };
+
+    private Button.OnClickListener listenerLUCHalf = new Button.OnClickListener(){
+        public void onClick(View v) {
+            if(ap<globalVariable.ap) {
+                int apInvest = (int)(Math.round((double)(globalVariable.ap - ap)/2));
+                luc += apInvest;
+                ap += apInvest;
+                String str1 = "+" + luc;
+                String str2 = "-" + ap;
+                textViewLUCNum2.setText(str1);
+                textViewAPNum2.setText(str2);
+            }
+        }
+    };
+
+    private Button.OnClickListener listenerHPAll = new Button.OnClickListener(){
+        public void onClick(View v) {
+            if(ap<globalVariable.ap) {
+                int apInvest = globalVariable.ap - ap;
+                hp += apInvest;
+                ap += apInvest;
+                String str1 = "+" + hp*10;
+                String str2 = "-" + ap;
+                textViewHPNum2.setText(str1);
+                textViewAPNum2.setText(str2);
+            }
+        }
+    };
+
+    private Button.OnClickListener listenerATKAll = new Button.OnClickListener(){
+        public void onClick(View v) {
+            if(ap<globalVariable.ap) {
+                int apInvest = globalVariable.ap - ap;
+                atk += apInvest;
+                ap += apInvest;
+                String str1 = "+" + atk * 5;
+                String str2 = "-" + ap;
+                textViewATKNum2.setText(str1);
+                textViewAPNum2.setText(str2);
+            }
+        }
+    };
+    private Button.OnClickListener listenerDEFAll = new Button.OnClickListener(){
+        public void onClick(View v) {
+            if(ap<globalVariable.ap) {
+                int apInvest = globalVariable.ap - ap;
+                def += apInvest;
+                ap += apInvest;
+                String str1 = "+" + def * 5;
+                String str2 = "-" + ap;
+                textViewDEFNum2.setText(str1);
+                textViewAPNum2.setText(str2);
+            }
+        }
+    };
+
+    private Button.OnClickListener listenerAGIAll = new Button.OnClickListener(){
+        public void onClick(View v) {
+            if(ap<globalVariable.ap) {
+                int apInvest = globalVariable.ap - ap;
+                agi += apInvest;
+                ap += apInvest;
+                String str1 = "+" + agi;
+                String str2 = "-" + ap;
+                textViewAGINum2.setText(str1);
+                textViewAPNum2.setText(str2);
+            }
+        }
+    };
+
+    private Button.OnClickListener listenerLUCAll = new Button.OnClickListener(){
+        public void onClick(View v) {
+            if(ap<globalVariable.ap) {
+                int apInvest = globalVariable.ap - ap;
+                luc += apInvest;
+                ap += apInvest;
+                String str1 = "+" + luc;
+                String str2 = "-" + ap;
+                textViewLUCNum2.setText(str1);
+                textViewAPNum2.setText(str2);
+            }
+        }
+    };
+
     private Button.OnClickListener listenerHP = new Button.OnClickListener(){
         public void onClick(View v) {
             if(ap<globalVariable.ap) {
@@ -130,6 +280,32 @@ public class Ability extends AppCompatActivity {
                 String str1 = "+" + def * 5;
                 String str2 = "-" + ap;
                 textViewDEFNum2.setText(str1);
+                textViewAPNum2.setText(str2);
+            }
+        }
+    };
+
+    private Button.OnClickListener listenerAGI = new Button.OnClickListener(){
+        public void onClick(View v) {
+            if(ap<globalVariable.ap) {
+                agi++;
+                ap++;
+                String str1 = "+" + agi;
+                String str2 = "-" + ap;
+                textViewAGINum2.setText(str1);
+                textViewAPNum2.setText(str2);
+            }
+        }
+    };
+
+    private Button.OnClickListener listenerLUC = new Button.OnClickListener(){
+        public void onClick(View v) {
+            if(ap<globalVariable.ap) {
+                luc++;
+                ap++;
+                String str1 = "+" + luc;
+                String str2 = "-" + ap;
+                textViewLUCNum2.setText(str1);
                 textViewAPNum2.setText(str2);
             }
         }

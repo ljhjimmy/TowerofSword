@@ -23,20 +23,13 @@ public class Loading extends AppCompatActivity {
         boolean isPlaying =  settings.getBoolean("isPlaying", false);
 
         if(isPlaying) {
-            int soul = settings.getInt("soul", 0);
-            globalVariable.soul = soul;
-            int money = settings.getInt("money", 0);
-            globalVariable.money = money;
-            int currentFloor = settings.getInt("currentFloor", 0);
-            globalVariable.currentFloor = currentFloor;
-            int lv = settings.getInt("lv", 0);
-            globalVariable.lv = lv;
-            int stamina = settings.getInt("stamina", 0);
-            globalVariable.stamina = stamina;
-            int exp = settings.getInt("exp", 0);
-            globalVariable.exp = exp;
-            int ap = settings.getInt("ap", 0);
-            globalVariable.ap = ap;
+            globalVariable.soul = settings.getInt("soul", 0);
+            globalVariable.money = settings.getInt("money", 0);
+            globalVariable.currentFloor = settings.getInt("currentFloor", 0);
+            globalVariable.lv = settings.getInt("lv", 0);
+            globalVariable.stamina = settings.getInt("stamina", 0);
+            globalVariable.exp = settings.getInt("exp", 0);
+            globalVariable.ap = settings.getInt("ap", 0);
 
             globalVariable.playerATK= settings.getInt("playerATK", 0);
             globalVariable.playerDEF= settings.getInt("playerDEF", 0);

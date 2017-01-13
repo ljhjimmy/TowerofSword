@@ -1,14 +1,19 @@
 package com.towerofsword.user.towerofsword;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class BattleResult extends Activity {
@@ -34,6 +39,12 @@ public class BattleResult extends Activity {
     ResultThread resultthread;
     boolean canTouch = false;
     boolean playerWin = false;
+
+    ImageView imageViewExpResultBorder;
+    ImageView imageViewExpResult;
+    private ViewGroup.LayoutParams params;
+    double expLength;
+    TextView textViewExpResultNum2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +109,19 @@ public class BattleResult extends Activity {
             textViewLvResultNum.setText(String.valueOf(globalVariable.lv));
             textViewStaminaResultNum.setText("-10");
         }
+
+        imageViewExpResultBorder = (ImageView)findViewById(R.id.imageViewExpResultBorder);
+        imageViewExpResult = (ImageView)findViewById(R.id.imageViewExpResult);
+
+        params = imageViewExpResult.getLayoutParams();
+        expLength = (double)globalVariable.exp;
+        params.width = convertDpToPixel((int)(expLength*4),this);
+        imageViewExpResult.setLayoutParams(params);
+
+        textViewExpResultNum2 = (TextView)findViewById(R.id.textViewExpResultNum2);
+        textViewExpResultNum2.setTypeface(font_pixel);
+        String str = globalVariable.exp + "/50";
+        textViewExpResultNum2.setText(str);
     }
 
     @Override
@@ -140,6 +164,17 @@ public class BattleResult extends Activity {
                     lvString = String.valueOf((int)Math.round(lvup)) + " level up!";
                     textViewExpResultNum.setText(String.valueOf((int)(exp)));
                     textViewLevelUp.setText(lvString);
+
+                    expLength += expEach;
+                    if(expLength >= 50){
+                        expLength -= 50;
+                    }
+                    params.width = convertDpToPixel((int)(expLength*4),BattleResult.this);
+                    imageViewExpResult.setLayoutParams(params);
+
+                    String str = (int)expLength + "/50";
+                    textViewExpResultNum2.setText(str);
+
                     break;
                 case 6:
                     globalVariable.lv += (int)lv;
@@ -194,5 +229,12 @@ public class BattleResult extends Activity {
             finish();
         }
         return super.onTouchEvent(event);
+    }
+
+    public static int convertDpToPixel(int dp, Context context){
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        int px =(int)( dp * ((float)metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+        return px;
     }
 }

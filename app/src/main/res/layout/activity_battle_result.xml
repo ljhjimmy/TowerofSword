@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="300dp"
     android:layout_height="400dp"
-    android:background="#7f8080"
-    >
+    android:background="#7f8080">
 
     <TextView
         android:text="+30"
@@ -142,5 +142,36 @@
         android:layout_marginTop="12dp"
         android:layout_alignParentTop="true"
         android:layout_alignEnd="@+id/textViewStaminaResultNum" />
+
+    <ImageView
+        android:layout_height="15dp"
+        android:background="@android:color/holo_orange_light"
+        android:id="@+id/imageViewExpResult"
+        android:layout_width="200dp"
+        android:layout_alignStart="@+id/imageViewExpResultBorder"
+        android:layout_alignTop="@+id/imageViewExpResultBorder"/>
+
+    <ImageView
+        android:layout_height="15dp"
+        app:srcCompat="@android:color/transparent"
+        android:id="@+id/imageViewExpResultBorder"
+        android:layout_width="200dp"
+        android:background="@drawable/hpborder"
+        android:elevation="1dp"
+        android:layout_below="@+id/textViewExpResultNum"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:text="50/50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewExpResultNum2"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:elevation="2dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignBottom="@+id/imageViewExpResult"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

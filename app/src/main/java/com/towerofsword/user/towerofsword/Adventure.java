@@ -84,6 +84,9 @@ public class Adventure extends AppCompatActivity {
         textViewLevel.setTypeface(font_pixel);
         textViewLevelNum = (TextView)findViewById(R.id.textViewLevelNum);
         textViewLevelNum.setTypeface(font_pixel);
+        Button btnExit  = (Button)findViewById(R.id.btnExit);
+        btnExit.setTypeface(font_pixel);
+        btnExit.setOnClickListener(listenerExit);
 
         globalVariable = (GlobalVariable) getApplicationContext();
         initVariable();
@@ -112,12 +115,12 @@ public class Adventure extends AppCompatActivity {
                     globalVariable.stamina =  globalVariable.stamina-3;
                     textViewStaminaNum.setText(String.valueOf(globalVariable.stamina));
                     textViewLevelNum.setText(String.valueOf(globalVariable.lv));
-
+                    item[monsterIndex].setVisibility(View.INVISIBLE);
+                    checkGameOver();
                     if(monsterIndex==17){
                         item[22].setImageResource(R.drawable.door_open);
                         item[22].setClickable(true);
                     }
-                    item[monsterIndex].setVisibility(View.INVISIBLE);
 
                     Intent intent = new Intent();
                     intent.setClass(Adventure.this, Ability.class);
@@ -127,8 +130,8 @@ public class Adventure extends AppCompatActivity {
                 else{
                     globalVariable.stamina =  globalVariable.stamina-10;
                     textViewStaminaNum.setText(String.valueOf(globalVariable.stamina));
+                    checkGameOver();
                 }
-                checkGameOver();
             }
         }
     }
@@ -367,6 +370,7 @@ public class Adventure extends AppCompatActivity {
             globalVariable.isPlaying=false;
             globalVariable.init();
             finish();
+            overridePendingTransition(0,0);
         }
     }
 
@@ -376,6 +380,15 @@ public class Adventure extends AppCompatActivity {
             intent.setClass(Adventure.this, Status.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
+            overridePendingTransition(0,0);
+        }
+    };
+
+    private Button.OnClickListener listenerExit = new Button.OnClickListener(){
+        public void onClick(View v) {
+            globalVariable.isPlaying=false;
+            globalVariable.init();
+            finish();
             overridePendingTransition(0,0);
         }
     };
