@@ -56,6 +56,7 @@ public class Adventure extends AppCompatActivity {
     private Typeface font_pixel;
     private static GlobalVariable globalVariable ;
     public static final String PREFS_NAME = "MyPrefsFile";
+    public static final String PREFS_NAME_RECORD = "MyPrefsFile2";
 
     TextView textViewStaminaNum;
     TextView textViewFloorNum;
@@ -117,15 +118,17 @@ public class Adventure extends AppCompatActivity {
                     textViewLevelNum.setText(String.valueOf(globalVariable.lv));
                     item[monsterIndex].setVisibility(View.INVISIBLE);
                     checkGameOver();
-                    if(monsterIndex==17){
-                        item[22].setImageResource(R.drawable.door_open);
-                        item[22].setClickable(true);
-                    }
+                    if(globalVariable.isPlaying) {
+                        if (monsterIndex == 17) {
+                            item[22].setImageResource(R.drawable.door_open);
+                            item[22].setClickable(true);
+                        }
 
-                    Intent intent = new Intent();
-                    intent.setClass(Adventure.this, Ability.class);
-                    startActivity(intent);
-                    overridePendingTransition(0,0);
+                        Intent intent = new Intent();
+                        intent.setClass(Adventure.this, Ability.class);
+                        startActivity(intent);
+                        overridePendingTransition(0, 0);
+                    }
                 }
                 else{
                     globalVariable.stamina =  globalVariable.stamina-10;
@@ -264,7 +267,7 @@ public class Adventure extends AppCompatActivity {
                 item[i].setVisibility(View.INVISIBLE);
             }
         }
-        item[2].setClickable(true);
+        if (globalVariable.currentFloor >1) item[2].setClickable(true);
     }
 
     private ImageButton.OnClickListener listenerItem = new ImageButton.OnClickListener(){
@@ -309,7 +312,20 @@ public class Adventure extends AppCompatActivity {
                     overridePendingTransition(0,0);
                     break;
                 case PORTAL:
-
+                    new AlertDialog.Builder(Adventure.this)
+                            .setTitle("返回上一層")
+                            .setMessage("是否花費1點Stamina返回上一層?")
+                            .setPositiveButton("確定",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            nextFloor(-1);
+                                            globalVariable.stamina  = globalVariable.stamina-1;
+                                            textViewStaminaNum.setText(String.valueOf(globalVariable.stamina));
+                                        }
+                                    })
+                            .setNegativeButton("取消",
+                                    null).show();
                     break;
                 case GATE:
                     nextFloor(1);
@@ -367,10 +383,31 @@ public class Adventure extends AppCompatActivity {
 
     private void checkGameOver(){
         if(globalVariable.stamina<=0){
-            globalVariable.isPlaying=false;
+            globalVariable.maxLv = globalVariable.lv;
+            if(globalVariable.recordFloor < globalVariable.maxFloor) globalVariable.recordFloor = globalVariable.maxFloor;
+            if(globalVariable.recordLv < globalVariable.maxLv) globalVariable.recordLv = globalVariable.maxLv;
             globalVariable.init();
-            finish();
-            overridePendingTransition(0,0);
+            save();
+            saveRecord();
+            new AlertDialog.Builder(Adventure.this)
+                    .setTitle("冒險結束")
+                    .setMessage("因為Stamina用盡而結束冒險\n" +
+                            "此次記錄：\n" +
+                            "最高等級：" + globalVariable.maxLv + "\n" +
+                            "最高層數：" + globalVariable.maxFloor)
+                    .setCancelable(false)
+                    .setPositiveButton("確定",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent();
+                                    intent.setClass(Adventure.this, Home.class);
+                                    startActivity(intent);
+                                    overridePendingTransition(0,0);
+                                    finish();
+                                }
+                            })
+                    .show();
         }
     }
 
@@ -386,10 +423,25 @@ public class Adventure extends AppCompatActivity {
 
     private Button.OnClickListener listenerExit = new Button.OnClickListener(){
         public void onClick(View v) {
-            globalVariable.isPlaying=false;
-            globalVariable.init();
-            finish();
-            overridePendingTransition(0,0);
+            new AlertDialog.Builder(Adventure.this)
+                    .setTitle("結束冒險")
+                    .setMessage("確定要離開嗎?\n(此次遊玩進度將被重置)")
+                    .setPositiveButton("確定",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    globalVariable.init();
+                                    save();
+                                    saveRecord();
+                                    Intent intent = new Intent();
+                                    intent.setClass(Adventure.this, Home.class);
+                                    startActivity(intent);
+                                    overridePendingTransition(0,0);
+                                    finish();
+                                }
+                            })
+                    .setNegativeButton("取消",
+                            null).show();
         }
     };
 
@@ -411,7 +463,17 @@ public class Adventure extends AppCompatActivity {
 
     private void nextFloor(int num){
         globalVariable.currentFloor += num;
+        if(globalVariable.currentFloor > globalVariable.maxFloor){
+            globalVariable.maxFloor = globalVariable.currentFloor;
+        }
+        save();
 
+        initVariable();
+        initBlock();
+        initItem();
+    }
+
+    public void save(){
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("soul", globalVariable.soul);
@@ -429,9 +491,33 @@ public class Adventure extends AppCompatActivity {
         editor.putInt("playerLUC", globalVariable.playerLUC);
         editor.commit();
 
-        initVariable();
-        initBlock();
-        initItem();
+    }
+
+    public void saveRecord(){
+        SharedPreferences settingsRecord = getSharedPreferences(PREFS_NAME_RECORD, 0);
+        SharedPreferences.Editor editorRecord = settingsRecord.edit();
+        editorRecord.putInt("recordFloor", globalVariable.recordFloor);
+        editorRecord.putInt("recordLv", globalVariable.recordLv);
+        editorRecord.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        new AlertDialog.Builder(Adventure.this)
+                .setTitle("確認視窗")
+                .setMessage("確定要結束應用程式嗎?")
+                .setPositiveButton("確定",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                finish();
+                            }
+                        })
+                .setNegativeButton("取消",
+                        null).show();
     }
 
 }

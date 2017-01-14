@@ -12,6 +12,7 @@ import java.util.TimerTask;
 
 public class Loading extends AppCompatActivity {
     public static final String PREFS_NAME = "MyPrefsFile";
+    public static final String PREFS_NAME_RECORD = "MyPrefsFile2";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,9 @@ public class Loading extends AppCompatActivity {
             editor.clear();
             globalVariable.init();
         }
+        SharedPreferences settingsRecord = getSharedPreferences(PREFS_NAME_RECORD, 0);
+        globalVariable.recordLv = settingsRecord.getInt("recordLv", 0);
+        globalVariable.recordFloor = settingsRecord.getInt("recordFloor", 0);
 
         Timer timer = new Timer(true);
         timer.schedule(new timerTask(),3000,2000);

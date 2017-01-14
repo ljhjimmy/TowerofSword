@@ -7,7 +7,6 @@ public class GlobalVariable extends Application {
     int money = 0;
     int soul = 0;
     int currentFloor = 1;
-    int maxFloor = 1;
 
     int stamina = 150;
     int lv = 1;
@@ -25,6 +24,11 @@ public class GlobalVariable extends Application {
     boolean isPlaying = false;
     boolean victory = false;
 
+    int maxFloor = 1;
+    int maxLv = 1;
+
+    int recordFloor = 1;
+    int recordLv = 1;
     public void init(){
         isPlaying = false;
         money = 0;

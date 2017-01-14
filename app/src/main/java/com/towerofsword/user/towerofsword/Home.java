@@ -24,7 +24,7 @@ public class Home extends AppCompatActivity {
 
         Button btnRecord = (Button)findViewById(R.id.btnRecord);
         btnRecord.setTypeface(font_pixel);
-        //btnRecord.setOnClickListener(listenerRecord);
+        btnRecord.setOnClickListener(listenerRecord);
 
         Button btnTalent = (Button)findViewById(R.id.btnTalent);
         btnTalent.setTypeface(font_pixel);
@@ -43,7 +43,16 @@ public class Home extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
             overridePendingTransition(0,0);
+            finish();
+        }
+    };
 
+    private Button.OnClickListener listenerRecord = new Button.OnClickListener(){
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(Home.this, Record.class);
+            startActivity(intent);
+            overridePendingTransition(0,0);
         }
     };
 

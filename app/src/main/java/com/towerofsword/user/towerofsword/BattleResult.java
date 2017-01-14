@@ -45,6 +45,7 @@ public class BattleResult extends Activity {
     private ViewGroup.LayoutParams params;
     double expLength;
     TextView textViewExpResultNum2;
+    String expStr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,8 +173,8 @@ public class BattleResult extends Activity {
                     params.width = convertDpToPixel((int)(expLength*4),BattleResult.this);
                     imageViewExpResult.setLayoutParams(params);
 
-                    String str = (int)expLength + "/50";
-                    textViewExpResultNum2.setText(str);
+                    expStr = (int)expLength + "/50";
+                    textViewExpResultNum2.setText(expStr);
 
                     break;
                 case 6:
