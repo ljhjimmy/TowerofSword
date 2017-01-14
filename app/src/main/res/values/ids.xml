@@ -20,4 +20,5 @@
     <item type="id" name="dynamicImageViewId8" />
     <item type="id" name="dynamicImageViewId9" />
     <item type="id" name="dynamicImageViewId10" />
+    <item type="id" name="BossImageViewId" />
 </resources>

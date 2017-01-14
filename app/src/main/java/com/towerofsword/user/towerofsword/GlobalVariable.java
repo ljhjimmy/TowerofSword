@@ -23,12 +23,16 @@ public class GlobalVariable extends Application {
 
     boolean isPlaying = false;
     boolean victory = false;
+    boolean BossBattle = false;
+    boolean[] bossDefeated = {false,false,false,false,false,false,false,false,false,false};
 
     int maxFloor = 1;
     int maxLv = 1;
 
     int recordFloor = 1;
     int recordLv = 1;
+
+
     public void init(){
         isPlaying = false;
         money = 0;
@@ -45,5 +49,9 @@ public class GlobalVariable extends Application {
         playerDEF = 50;
         playerAGI = 0;
         playerLUC = 0;
+
+        for(int i=0;i<10;i++){
+            bossDefeated[i] = false;
+        }
     }
 }

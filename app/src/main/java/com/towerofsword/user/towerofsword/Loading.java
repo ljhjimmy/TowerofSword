@@ -37,6 +37,17 @@ public class Loading extends AppCompatActivity {
             globalVariable.playerHP= settings.getInt("playerHP", 0);
             globalVariable.playerAGI= settings.getInt("playerAGI", 0);
             globalVariable.playerLUC= settings.getInt("playerLUC", 0);
+
+            globalVariable.bossDefeated[0] = settings.getBoolean("bossDefeated1", false);
+            globalVariable.bossDefeated[1] = settings.getBoolean("bossDefeated2", false);
+            globalVariable.bossDefeated[2] = settings.getBoolean("bossDefeated3", false);
+            globalVariable.bossDefeated[3] = settings.getBoolean("bossDefeated4", false);
+            globalVariable.bossDefeated[4] = settings.getBoolean("bossDefeated5", false);
+            globalVariable.bossDefeated[5] = settings.getBoolean("bossDefeated6", false);
+            globalVariable.bossDefeated[6] = settings.getBoolean("bossDefeated7", false);
+            globalVariable.bossDefeated[7] = settings.getBoolean("bossDefeated8", false);
+            globalVariable.bossDefeated[8] = settings.getBoolean("bossDefeated9", false);
+            globalVariable.bossDefeated[9] = settings.getBoolean("bossDefeated10", false);
         }
         else{
             editor.clear();

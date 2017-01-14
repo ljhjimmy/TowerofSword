@@ -91,6 +91,8 @@ public class BattleResult extends Activity {
             textViewStaminaResultNum.setVisibility(View.INVISIBLE);
             textViewLevelUp.setVisibility(View.INVISIBLE);
 
+            textViewStaminaResultNum.setText("+20");
+
             exp = (double) intent.getIntExtra("exp", 1);
             expnum = (exp + globalVariable.exp) % 50;
             lv = (exp + globalVariable.exp - expnum) / 50;
@@ -167,7 +169,7 @@ public class BattleResult extends Activity {
                     textViewLevelUp.setText(lvString);
 
                     expLength += expEach;
-                    if(expLength >= 50){
+                    while(expLength >= 50){
                         expLength -= 50;
                     }
                     params.width = convertDpToPixel((int)(expLength*4),BattleResult.this);

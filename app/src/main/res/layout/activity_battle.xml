@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/imageViewCharacter"
         android:layout_marginTop="27dp"
-        android:scaleType="center" />
+        android:scaleType="fitXY" />
 
     <ImageView
         android:layout_height="15dp"
@@ -94,7 +94,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/imageViewCharacter"
         android:layout_marginTop="27dp"
-        android:scaleType="fitXY" />
+        android:scaleType="fitCenter" />
 
     <TextView
         android:text=""

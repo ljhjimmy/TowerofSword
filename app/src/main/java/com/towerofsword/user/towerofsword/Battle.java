@@ -39,11 +39,11 @@ public class Battle extends AppCompatActivity {
     int soul = 100;
     int exp = 1599;
 
-    double[] HPCoefficient = {1.0 ,1.15, 1.3, 1.5};
-    double[] ATKCoefficient = {1.0 ,1.15, 1.3, 1.5};
-    double[] moneyCoefficient = {1.0 ,1.2, 1.4, 1.6};
-    double[] soulCoefficient = {1.0 ,1.2, 1.4, 1.6};
-    double[] expCoefficient = {1.0 ,1.3, 1.6, 2.0};
+    double[] HPCoefficient = {1.0 ,1.15, 1.3, 1.5, 2.0, 2.5};
+    double[] ATKCoefficient = {1.0 ,1.15, 1.3, 1.5, 2.0, 2.5};
+    double[] moneyCoefficient = {1.0 ,1.2, 1.4, 1.6, 2.0, 2.5};
+    double[] soulCoefficient = {1.0 ,1.2, 1.4, 1.6, 2.0, 2.5};
+    double[] expCoefficient = {1.0 ,1.3, 1.6, 2.0, 2.0, 2.5};
 
     int monsterWhich;
 
@@ -67,7 +67,7 @@ public class Battle extends AppCompatActivity {
 
     private static GlobalVariable globalVariable ;
     ImageView imageViewMonster;
-    private static final int[] idMonsters = {R.drawable.monster1, R.drawable.monster2, R.drawable.monster3, R.drawable.monster4};
+    private static final int[] idMonsters = {R.drawable.monster1, R.drawable.monster2, R.drawable.monster3, R.drawable.monster4,R.drawable.slime_small,R.drawable.slime_big};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,31 +205,35 @@ public class Battle extends AppCompatActivity {
         monsterWhich = globalVariable.monsterWhich;
         currentFloor = globalVariable.currentFloor;
 
-        if(playerDEF > currentFloor*100){
-            int remainDEF = playerDEF - currentFloor*100;
-            if(remainDEF <= 500){
-                playerDEFPercentage =10 +(int) ((double)(remainDEF)*10/500);
+        if(playerDEF > currentFloor*20){
+            int remainDEF = playerDEF - currentFloor*20;
+            if(remainDEF <= 100){
+                playerDEFPercentage =10 +(int) ((double)(remainDEF)*10/100);
+            }
+            else if(remainDEF > 100 && remainDEF <=500){
+                playerDEFPercentage =20 +(int) ((double)(remainDEF-100)*10/400);
             }
             else if(remainDEF > 500 && remainDEF <=1500){
-                playerDEFPercentage =20 +(int) ((double)(remainDEF-500)*10/1000);
+                playerDEFPercentage =30 +(int) ((double)(remainDEF-500)*10/1000);
             }
-            else if(remainDEF > 1500 && remainDEF <=5000){
-                playerDEFPercentage =30 +(int) ((double)(remainDEF-1500)*10/3500);
+            else if(remainDEF > 1500 && remainDEF <= 5000){
+                playerDEFPercentage =40  +(int) ((double)(remainDEF-1500)*10/3500);
             }
             else{
-                playerDEFPercentage =40;
+                playerDEFPercentage =50;
             }
         }
         else{
             playerDEFPercentage = 0;
         }
 
-        monsterHP = (int) Math.round(currentFloor * 300  * (1.2 - Math.random()*0.41) * HPCoefficient[monsterWhich]);
+        monsterHP = (int) Math.round(currentFloor * (200 + (int)((double)currentFloor/5)*50 + (int)((double)currentFloor/10)*100 + (int)((double)currentFloor/11)*200 + (int)((double)currentFloor/15)*300)
+                * (1.2 - Math.random()*0.41) * HPCoefficient[monsterWhich]);
         monsterHPMax = monsterHP;
 
         money = (int) Math.round(currentFloor * 10 * (1.1 - Math.random()*0.21) * moneyCoefficient[monsterWhich]);
         soul = (int) Math.round(currentFloor * 10 * (1.1 - Math.random()*0.21) * soulCoefficient[monsterWhich]);
-        exp = (int) Math.round(currentFloor * 50 * (1.1 - Math.random()*0.21) * expCoefficient[monsterWhich]);
+        exp = (int) Math.round(currentFloor * 55 * (1.1 - Math.random()*0.21) * expCoefficient[monsterWhich]);
     }
 
     private void battle(int who){
@@ -262,7 +266,8 @@ public class Battle extends AppCompatActivity {
             imageViewMonsterHP.setLayoutParams(params2);
         }
         else if (who ==2){
-            monsterATK = (int) Math.round(currentFloor * 10  * (1.2 - Math.random()*0.41) * ATKCoefficient[monsterWhich]);
+            monsterATK = (int) Math.round(currentFloor * (8 + (int)((double)currentFloor/5)*5 + (int)((double)currentFloor/10)*8 + (int)((double)currentFloor/11)*10 + (int)((double)currentFloor/15)*10 )
+                    * (1.2 - Math.random()*0.41) * ATKCoefficient[monsterWhich]);
             monsterDMG = (int) Math.round(monsterATK * (1 - playerDEFPercentage*0.01));
             textViewMonsterDamage.setText(String.valueOf(monsterDMG));
             playerHP = playerHP - monsterDMG;

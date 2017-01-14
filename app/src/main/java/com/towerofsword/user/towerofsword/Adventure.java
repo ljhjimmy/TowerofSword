@@ -1,14 +1,17 @@
 package com.towerofsword.user.towerofsword;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -64,8 +67,9 @@ public class Adventure extends AppCompatActivity {
     private int steps = 0;
 
     int monsterIndex = -1;
-    private static final int[] idMonsters = {R.drawable.monster1, R.drawable.monster2, R.drawable.monster3, R.drawable.monster4,};
+    private static final int[] idMonsters = {R.drawable.monster1, R.drawable.monster2, R.drawable.monster3, R.drawable.monster4,R.drawable.slime_small,R.drawable.slime_big};
 
+    ImageView imageViewBoss;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +95,6 @@ public class Adventure extends AppCompatActivity {
 
         globalVariable = (GlobalVariable) getApplicationContext();
         initVariable();
-
         for (int i=0; i<idBlockArray.length; i++) {
             block[i] = (ImageButton)findViewById(idBlockArray[i]);
             item[i] = (ImageButton)findViewById(idItemArray[i]);
@@ -100,8 +103,20 @@ public class Adventure extends AppCompatActivity {
             block[i].setOnClickListener(listenerBlock) ;
             item[i].setOnClickListener(listenerItem) ;
         }
-        initBlock();
-        initItem();
+        initBossPosition();
+        imageViewBoss.setOnClickListener(listenerBoss);
+
+        if(globalVariable.currentFloor%10!=0) {
+            globalVariable.BossBattle = false;
+            initVariable();
+            initBlock();
+            initItem();
+        }
+        else{
+            globalVariable.BossBattle = true;
+            initVariable();
+            initBossFloor();
+        }
         globalVariable.isPlaying = true;
     }
 
@@ -129,6 +144,30 @@ public class Adventure extends AppCompatActivity {
                         startActivity(intent);
                         overridePendingTransition(0, 0);
                     }
+                }
+                else{
+                    globalVariable.stamina =  globalVariable.stamina-10;
+                    textViewStaminaNum.setText(String.valueOf(globalVariable.stamina));
+                    checkGameOver();
+                }
+            }
+        }
+        if (requestCode == 2) {
+            if(resultCode == Activity.RESULT_OK){
+                boolean result=data.getBooleanExtra("result",false);
+                if(result){
+                    globalVariable.stamina =  globalVariable.stamina+20;
+                    textViewStaminaNum.setText(String.valueOf(globalVariable.stamina));
+                    textViewLevelNum.setText(String.valueOf(globalVariable.lv));
+                    imageViewBoss.setVisibility(View.INVISIBLE);
+                    globalVariable.bossDefeated[(int)((double)globalVariable.currentFloor/10)-1]= true;
+                    item[22].setImageResource(R.drawable.door_open);
+                    item[22].setClickable(true);
+
+                    Intent intent = new Intent();
+                    intent.setClass(Adventure.this, Ability.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
                 }
                 else{
                     globalVariable.stamina =  globalVariable.stamina-10;
@@ -268,6 +307,9 @@ public class Adventure extends AppCompatActivity {
             }
         }
         if (globalVariable.currentFloor >1) item[2].setClickable(true);
+
+        imageViewBoss.setVisibility(View.INVISIBLE);
+        imageViewBoss.setClickable(false);
     }
 
     private ImageButton.OnClickListener listenerItem = new ImageButton.OnClickListener(){
@@ -467,11 +509,79 @@ public class Adventure extends AppCompatActivity {
             globalVariable.maxFloor = globalVariable.currentFloor;
         }
         save();
-
-        initVariable();
-        initBlock();
-        initItem();
+        if(globalVariable.currentFloor%10!=0) {
+            globalVariable.BossBattle = false;
+            initVariable();
+            initBlock();
+            initItem();
+        }
+        else{
+            globalVariable.BossBattle = true;
+            initVariable();
+            initBossFloor();
+        }
     }
+
+    private void initBossFloor(){
+        for(int i=0;i<block.length;i++) {
+            block[i].setImageResource(R.drawable.block1_dark);
+            block[i].setVisibility(View.INVISIBLE);
+            block[i].setClickable(false);
+        }
+        for(int i=0;i<25;i++){
+            itemIsWhat[i] = EMPTY;
+        }
+        itemIsWhat[2] = PORTAL;
+        itemIsWhat[22] = GATE;
+        item[22].setImageResource(R.drawable.door);
+        for(int i=0;i<25;i++){
+            item[i].setClickable(false);
+            if(itemIsWhat[i] != EMPTY){
+                item[i].setVisibility(View.VISIBLE);
+            }
+            else{
+                item[i].setVisibility(View.INVISIBLE);
+            }
+        }
+        if (globalVariable.currentFloor >1) item[2].setClickable(true);
+
+        if(! globalVariable.bossDefeated[(int)((double)globalVariable.currentFloor/10)-1]) {
+            int index = (globalVariable.currentFloor / 10 + 1) % 2 + 4;
+            globalVariable.monsterWhich = index;
+            imageViewBoss.setImageResource(idMonsters[index]);
+            imageViewBoss.setVisibility(View.VISIBLE);
+            imageViewBoss.setClickable(true);
+        }
+        else{
+            imageViewBoss.setVisibility(View.INVISIBLE);
+            imageViewBoss.setClickable(false);
+            item[22].setImageResource(R.drawable.door_open);
+            item[22].setClickable(true);
+        }
+    }
+
+    public void initBossPosition(){
+        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.adventure_layout);
+        RelativeLayout.LayoutParams params;
+        imageViewBoss = new ImageView(this);
+        imageViewBoss.setId(R.id.BossImageViewId);
+        imageViewBoss.setElevation(10);
+
+        int length = convertDpToPixel(150,this);
+        params = new RelativeLayout.LayoutParams(length, length);
+        params.addRule(RelativeLayout.BELOW, idItemArray[22]);
+        params.addRule(RelativeLayout.CENTER_HORIZONTAL,RelativeLayout.TRUE);
+        relativeLayout.addView(imageViewBoss, params);
+    }
+
+    private ImageView.OnClickListener listenerBoss = new View.OnClickListener(){
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(Adventure.this, Battle.class);
+            startActivityForResult(intent, 2);
+            overridePendingTransition(0,0);
+        }
+    };
 
     public void save(){
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
@@ -489,6 +599,16 @@ public class Adventure extends AppCompatActivity {
         editor.putInt("playerDEF", globalVariable.playerDEF);
         editor.putInt("playerAGI", globalVariable.playerAGI);
         editor.putInt("playerLUC", globalVariable.playerLUC);
+        editor.putBoolean("bossDefeated1", globalVariable.bossDefeated[0]);
+        editor.putBoolean("bossDefeated2", globalVariable.bossDefeated[1]);
+        editor.putBoolean("bossDefeated3", globalVariable.bossDefeated[2]);
+        editor.putBoolean("bossDefeated4", globalVariable.bossDefeated[3]);
+        editor.putBoolean("bossDefeated5", globalVariable.bossDefeated[4]);
+        editor.putBoolean("bossDefeated6", globalVariable.bossDefeated[5]);
+        editor.putBoolean("bossDefeated7", globalVariable.bossDefeated[6]);
+        editor.putBoolean("bossDefeated8", globalVariable.bossDefeated[7]);
+        editor.putBoolean("bossDefeated9", globalVariable.bossDefeated[8]);
+        editor.putBoolean("bossDefeated10", globalVariable.bossDefeated[9]);
         editor.commit();
 
     }
@@ -520,6 +640,12 @@ public class Adventure extends AppCompatActivity {
                         null).show();
     }
 
+    public static int convertDpToPixel(int dp, Context context){
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        int px =(int)( dp * ((float)metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+        return px;
+    }
 }
 
 
