@@ -90,9 +90,12 @@ public class BattleResult extends Activity {
             textViewLvResultNum.setVisibility(View.INVISIBLE);
             textViewStaminaResultNum.setVisibility(View.INVISIBLE);
             textViewLevelUp.setVisibility(View.INVISIBLE);
-
-            textViewStaminaResultNum.setText("+20");
-
+            if(globalVariable.BossBattle) {
+                textViewStaminaResultNum.setText("+20");
+            }
+            else{
+                textViewStaminaResultNum.setText("-3");
+            }
             exp = (double) intent.getIntExtra("exp", 1);
             expnum = (exp + globalVariable.exp) % 50;
             lv = (exp + globalVariable.exp - expnum) / 50;
